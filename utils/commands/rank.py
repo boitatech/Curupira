@@ -1,6 +1,6 @@
 def get_ranking_with_user():
-    mock = """
-    RANKING: \n
+    mock = """\n
+                RANKING: \n
             1º - Usuário 1
             2º - Usuário 2
             3º - Usuário 3

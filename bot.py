@@ -36,7 +36,6 @@ async def solve(ctx, challId=None, flag=None):
     else:
         await ctx.send("Você precisa mandar uma `challId` e uma `flag`!")
 
-# Startup Information
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game('Boitatech CTF'))
