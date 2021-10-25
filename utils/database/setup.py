@@ -1,26 +1,19 @@
-import sqlite3
-from sqlite3 import Error
-
-def create_connection(db_file):
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-    except Error as e:
-        print(e)
-
-    return conn
-
-
 def generate_database(conn):
+    cur = conn.cursor()
+
     users = """
-            CREATE TABLE user (
+            CREATE TABLE IF NOT EXISTS user (
                 id serial primary key,
-                discordId TEXT
+                discordId TEXT,
+                score int,
             )
             """
 
+    cur.execute(users)
+    conn.commit()
+
     challenges = """
-                CREATE TABLE challenge (
+                CREATE TABLE IF NOT EXISTS challenge (
                     id serial primary key,
                     description TEXT,
                     flag TEXT,
@@ -31,22 +24,36 @@ def generate_database(conn):
                     url TEXT
                 )
                 """
-    
+
+    cur.execute(challenges)
+    conn.commit()
+
     attemps = """
-                CREATE TABLE attempt (
+                CREATE TABLE IF NOT EXISTS attempt (
                     id serial primary key,
                     user_id int references user,
                     chall_id int references challenge
                 )
               """
 
-    cur = conn.cursor()
-    cur.execute(users)
-    conn.commit()
-    cur.execute(challenges)
-    conn.commit()
     cur.execute(attemps)
     conn.commit()
 
-def register_attempt(conn):
+
+def get_user_ranking(conn):
+    cur = conn.cursor()
+    users = f"""
+                SELECT * FROM users LIMIT 10
+             """
     pass
+
+
+def get_challenge_description(conn, challId):
+    cur = conn.cursor()
+    description = f"""
+                      SELECT description FROM challenge WHERE id == {challId}
+                   """
+
+    cur.execute(description)
+    data = cur.fetchall()
+    return data[0][0]
