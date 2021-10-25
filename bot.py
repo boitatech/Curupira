@@ -2,22 +2,45 @@
 
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
-
-import sqlite3
-from sqlite3 import Error
-
-
+from utils.config import TOKEN
 from utils.commands.rank import get_ranking_with_user
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description
+from peewee import *
 
-import os
+
+# Database setup
+# http://docs.peewee-orm.com/en/latest/peewee/quickstart.html       
+db = SqliteDatabase('config/database/database.sqlite')
 
 
-# Boring config
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+class Challenge(Model):
+    description = TextField()
+    flag = TextField()
+    name = TextField()
+    points = IntegerField()
+    category = TextField()
+    level = IntegerField()
+    url = TextField()
+    class Meta:
+        database = db
+
+
+class User(Model):
+    descordId = TextField()
+    score = IntegerField()
+    class Meta:
+        database = db
+
+# class Pet(Model):
+#     owner = ForeignKeyField(Person, backref='pets')
+#     name = CharField()
+#     animal_type = CharField()
+#     class Meta:
+#         database = db # this model uses the "people.db" database
+
+
+db.connect()
 bot = commands.Bot(command_prefix='$', description="Boitatech CTF")
 
 
@@ -39,6 +62,9 @@ async def ranking(ctx):
 async def solve(ctx, challId=None, flag=None):
     """
     Esse comando inputa uma flag
+
+    :challId = Id da challenge
+    :flag = Flag pra dar input
     """
     if challId and flag:
         await ctx.send(check_flag(challId, flag, ctx.author.id))
@@ -57,6 +83,12 @@ async def get_description(ctx, challId=None):
     await ctx.send(get_challenge_description(CONN, challId))
 
 
+# @bot.event
+# async def on_message(message):
+#     if isinstance(message.channel, discord.channel.DMChannel): 
+#         await message.channel.send('!') 
+
+
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game('Boitatech CTF'))
@@ -65,10 +97,9 @@ async def on_ready():
 
 
 if __name__ == "__main__":
-    # TODO: instanciar banco de dados
     CONN = None
     try:
-        CONN = sqlite3.connect("./utils/database/database.sqlite")
+        CONN = SqliteDatabase('config/database/database.sqlite')
     except Error as e:
         print(e)
     bot.run(TOKEN)
