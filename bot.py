@@ -32,6 +32,10 @@ class User(Model):
     class Meta:
         database = db
 
+
+class Attempt(Model):
+    user_id = ForeignKeyField()
+
 # class Pet(Model):
 #     owner = ForeignKeyField(Person, backref='pets')
 #     name = CharField()
