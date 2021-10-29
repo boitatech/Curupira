@@ -70,11 +70,17 @@ async def solve(ctx, challId=None, flag=None):
     :challId = Id da challenge
     :flag = Flag pra dar input
     """
-    if challId and flag:
-        await ctx.send(check_flag(challId, flag, ctx.author.id))
+    await ctx.author.create_dm()
+    if isinstance(ctx.channel, discord.channel.DMChannel):
+        try:
+            if challId and flag:
+                await ctx.send(check_flag(challId, flag, ctx.author.id))
+            else:
+                await ctx.author.dm_channel.send("Você precisa mandar uma `challId` e uma `flag`!")
+        except Exception as err:
+            print(err)
     else:
-        await ctx.send("Você precisa mandar uma `challId` e uma `flag`!")
-
+        await ctx.author.dm_channel.send("Utilize o comando `$solve` aqui!")
 
 @bot.command()
 async def get_description(ctx, challId=None):
