@@ -3,9 +3,16 @@ from peewee import ForeignKeyField, AutoField
 
 
 def init_database():
+
+
     print('Iniciando DB...')
     _DB = None
-    _DB = SqliteDatabase('./database.sqlite')
+    _DB = PostgresqlDatabase(
+    'curupira',  # Required by Peewee.
+    user=os.getenv('DB_USERNAME'),  # Will be passed directly to psycopg2.
+    password=os.getenv('DB_PASSWORD'),  # Ditto.
+    host=os.getenv('DB_HOSTNAME'))  # Ditto.
+
     _DB.connect()
     _DB.create_tables([Challenge], safe=True)
     _DB.create_tables([User], safe=True)
