@@ -1,1 +1,1 @@
-web: gunicorn curupira.wsgi
+worker: python3 bot.py
