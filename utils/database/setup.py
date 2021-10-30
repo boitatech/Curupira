@@ -1,5 +1,6 @@
-from peewee import SqliteDatabase, TextField, IntegerField, Model
+from peewee import PostgresqlDatabase, TextField, IntegerField, Model
 from peewee import ForeignKeyField, AutoField
+from utils.config import DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME
 
 
 def init_database():
@@ -8,11 +9,11 @@ def init_database():
     print('Iniciando DB...')
     _DB = None
     _DB = PostgresqlDatabase(
-    os.getenv('DB_NAME'),  # Required by Peewee.
-    user=os.getenv('DB_USERNAME'),  # Will be passed directly to psycopg2.
-    password=os.getenv('DB_PASSWORD'),  # Ditto.
-    host=os.getenv('DB_HOSTNAME'))  # Ditto.
-
+        DB_NAME,
+        user=DB_USERNAME,
+        password=DB_PASSWORD,
+        host=DB_HOSTNAME
+        )
     _DB.connect()
     _DB.create_tables([Challenge], safe=True)
     _DB.create_tables([User], safe=True)
