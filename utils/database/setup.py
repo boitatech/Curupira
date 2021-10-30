@@ -15,9 +15,6 @@ def init_database():
         host=DB_HOSTNAME
         )
     _DB.connect()
-    _DB.create_tables([Challenge], safe=True)
-    _DB.create_tables([User], safe=True)
-    _DB.create_tables([Attempt], safe=True)
     return _DB
 
 
@@ -50,6 +47,11 @@ class Attempt(BaseModel):
     id = AutoField(primary_key=True)
     user_id = ForeignKeyField(User, backref='user')
     chall_id = ForeignKeyField(Challenge, backref='challenge')
+
+
+_DB.create_tables([Challenge], safe=True)
+_DB.create_tables([User], safe=True)
+_DB.create_tables([Attempt], safe=True)
 
 
 def get_challenge_description(challId):
