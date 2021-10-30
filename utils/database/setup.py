@@ -7,9 +7,9 @@ def init_database():
     _DB = None
     _DB = SqliteDatabase('./database.sqlite')
     _DB.connect()
-    _DB.create_tables([Challenge], safe=True)
-    _DB.create_tables([User], safe=True)
-    _DB.create_tables([Attempt], safe=True)
+    # _DB.create_tables([Challenge], safe=True)
+    # _DB.create_tables([User], safe=True)
+    # _DB.create_tables([Attempt], safe=True)
     return _DB
 
 
