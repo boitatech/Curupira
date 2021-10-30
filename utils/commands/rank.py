@@ -1,4 +1,6 @@
 def get_ranking_with_user():
+    current_score = User.select(User.score).where(User.discordId == ctx.author.id)
+
     mock = """\n
                 RANKING: \n
             1º - Usuário 1

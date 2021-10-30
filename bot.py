@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 from utils.config import TOKEN
 from utils.commands.rank import get_ranking_with_user
+from utils.commands.user import register_user
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description
 from peewee import *
@@ -27,7 +28,7 @@ class Challenge(Model):
 
 
 class User(Model):
-    descordId = TextField()
+    discordId = TextField()
     score = IntegerField()
     class Meta:
         database = db
