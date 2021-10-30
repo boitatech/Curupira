@@ -1,61 +1,56 @@
+from peewee import SqliteDatabase, TextField, IntegerField, Model
+from peewee import ForeignKeyField, AutoField
 
 
-# def generate_database(conn):
-#     cur = conn.cursor()
-
-#     users = """
-#             CREATE TABLE IF NOT EXISTS user (
-#                 id serial primary key,
-#                 discordId TEXT,
-#                 score int,
-#             )
-#             """
-
-#     cur.execute(users)
-#     conn.commit()
-
-#     challenges = """
-#                 CREATE TABLE IF NOT EXISTS challenge (
-#                     id serial primary key,
-#                     description TEXT,
-#                     flag TEXT,
-#                     name TEXT,
-#                     points int,
-#                     category TEXT,
-#                     level int,
-#                     url TEXT
-#                 )
-#                 """
-
-#     cur.execute(challenges)
-#     conn.commit()
-
-#     attemps = """
-#                 CREATE TABLE IF NOT EXISTS attempt (
-#                     id serial primary key,
-#                     user_id int references user,
-#                     chall_id int references challenge
-#                 )
-#               """
-
-#     cur.execute(attemps)
-#     conn.commit()
+def init_database():
+    print('Iniciando DB...')
+    _DB = None
+    _DB = SqliteDatabase('./database.sqlite')
+    _DB.connect()
+    _DB.create_tables([Challenge], safe=True)
+    _DB.create_tables([User], safe=True)
+    _DB.create_tables([Attempt], safe=True)
+    return _DB
 
 
-# def get_user_ranking(conn):
-#     cur = conn.cursor()
-#     users = f"""
-#                 SELECT * FROM users LIMIT 10
-#              """
-#     pass
+_DB = init_database()
 
 
-# def get_challenge_description(conn, challId):
-#     cur = conn.cursor()
-#     description = f"""
-#                       SELECT description FROM challenge WHERE id == {challId}
-#                    """
+class BaseModel(Model):
+    class Meta:
+        database = _DB
 
-#     cur.execute(description)
-#     data = cur.fetchall()
-#     return data[0][0]
+
+class Challenge(BaseModel):
+    id = AutoField(primary_key=True)
+    description = TextField()
+    flag = TextField()
+    name = TextField()
+    points = IntegerField()
+    category = TextField()
+    level = IntegerField()
+    url = TextField()
+
+
+class User(BaseModel):
+    id = AutoField(primary_key=True)
+    descordId = TextField()
+    score = IntegerField()
+
+
+class Attempt(BaseModel):
+    id = AutoField(primary_key=True)
+    user_id = ForeignKeyField(User, backref='user')
+    chall_id = ForeignKeyField(Challenge, backref='challenge')
+
+
+def get_challenge_description(challId):
+    test = Challenge.select(
+                            Challenge.description
+                           ).where(
+                            Challenge.id == challId
+                           )
+
+    import ipdb
+    ipdb.set_trace()
+    return test
