@@ -14,9 +14,9 @@ def init_database():
     host=os.getenv('DB_HOSTNAME'))  # Ditto.
 
     _DB.connect()
-    _DB.create_tables([Challenge], safe=True)
-    _DB.create_tables([User], safe=True)
-    _DB.create_tables([Attempt], safe=True)
+    # _DB.create_tables([Challenge], safe=True)
+    # _DB.create_tables([User], safe=True)
+    # _DB.create_tables([Attempt], safe=True)
     return _DB
 
 
