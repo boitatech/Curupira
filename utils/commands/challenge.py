@@ -13,7 +13,7 @@ def get_challenges():
             Challenge.url
             )
         for challenge in challenges:
-            return f'''{challenge.name} {challenge.id}, {challenge.points} Pontos - {challenge.category}
+            return f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
             {challenge.description}
             {challenge.url}
             ------------------------------------------------------------'''
