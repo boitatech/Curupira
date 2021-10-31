@@ -1,7 +1,8 @@
 from peewee import PostgresqlDatabase, TextField, IntegerField, Model
 from peewee import ForeignKeyField, AutoField
+from peewee_async import Manager
 from utils.config import DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME
-
+from utils.commands.user import register_user
 
 def init_database():
     print('Iniciando DB...')

@@ -1,9 +1,9 @@
-from ..database.setup import User
+from ..database.setup import User, _DB
 
 
 def get_ranking_with_user(ctx):
-    return User.select(User.score).where(User.descordId == ctx.author.id)
-
+    data = _DB.execute(User.select(User.score).where(User.descordId == ctx.author.id))
+    return data
     # mock = """\n
     #             RANKING: \n
     #         1º - Usuário 1

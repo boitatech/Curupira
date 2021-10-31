@@ -59,6 +59,7 @@ async def get_description(ctx, challId=None):
     print(challId)
     await ctx.send(get_challenge_description(challId))
 
+
 @bot.command()
 async def register(ctx):
     """
@@ -68,21 +69,11 @@ async def register(ctx):
         return user == ctx.author and str(reaction.emoji) == '\N{White Heavy Check Mark}'
 
     message = await ctx.send("\nGostaria de se registrar no CTF?")
-    
-    symbols = ['\N{White Heavy Check Mark}','\N{Cross Mark}']
+    symbols = ['\N{White Heavy Check Mark}', '\N{Cross Mark}']
     for symbol in symbols:
         await message.add_reaction(symbol)
-    
-    # check = lambda r, u: u == ctx.author and str(r.emoji) in symbols  # r=reaction, u=user
-    # await bot.wait_for('reaction_add', timeout=60.0, check=check)
-    
     await bot.wait_for('reaction_add', timeout=60.0, check=check)
     await ctx.send(register_user(ctx.author.id))
-    
-# @bot.event
-# async def on_message(message):
-#     if isinstance(message.channel, discord.channel.DMChannel):
-#         await message.channel.send('!')
 
 
 @bot.event
