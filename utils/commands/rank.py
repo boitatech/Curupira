@@ -8,7 +8,7 @@ from ..database.setup import User
 
 def get_ranking_with_user(ctx):
     data = (User.select(User.score).where(User.discordId == ctx.author.id))
-    return data.score
+    return [item for item in data]    
     # mock = """\n
     #             RANKING: \n
     #         1º - Usuário 1
