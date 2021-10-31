@@ -1,9 +1,14 @@
-from ..database.setup import User, _DB
+from ..database.setup import User
+
+
+# def get_top_10_users(ctx):
+#     data = (User.select(User.score).where(User.discordId == ctx.author.id))
+#     return data
 
 
 def get_ranking_with_user(ctx):
-    data = _DB.execute(User.select(User.score).where(User.discordId == ctx.author.id))
-    return data
+    data = (User.select(User.score).where(User.discordId == ctx.author.id))
+    return data.score
     # mock = """\n
     #             RANKING: \n
     #         1º - Usuário 1
