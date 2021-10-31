@@ -10,4 +10,4 @@ def register_user(userID):
 
     except Exception as err:
         print(err)
-        return f'O usuário <@{userID}> já foi cadastrado!'
+        return f'O usuário <@{userID}> já existe!'
