@@ -1,4 +1,4 @@
-from database.setup import User
+from ..database.setup import User
 
 
 def get_ranking_with_user(ctx):
