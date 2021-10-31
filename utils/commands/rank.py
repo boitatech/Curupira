@@ -2,7 +2,7 @@ from ..database.setup import User, _DB
 
 
 def get_ranking_with_user(ctx):
-    data = _DB.execute(User.select(User.score).where(User.descordId == ctx.author.id))
+    data = _DB.execute(User.select(User.score).where(User.discordId == ctx.author.id))
     return data
     # mock = """\n
     #             RANKING: \n
