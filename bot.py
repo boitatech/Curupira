@@ -94,6 +94,7 @@ help
 get_description""")
     await ctx.send(embed = a)
 
+
 @help.command()
 async def solve(ctx):
     """
@@ -103,17 +104,20 @@ async def solve(ctx):
     b.add_field(name = "Sintaxe", value = "$solve [id_challenge] [flag]")
     await ctx.send(embed = b)
 
+
 @help.command()
 async def ranking(ctx):
     b = discord.Embed(title = "Checar ranking", description = "O comando retorna os 10 primeiros no ranking e o ranking do usuário atual registrado.", colour=0xFF0000)
     b.add_field(name = "Sintaxe", value = "$ranking")
     await ctx.send(embed = b)
 
+
 @help.command()
 async def register(ctx):
     b = discord.Embed(title = "Registrar usuário", description = "O comando register registra o usuário do discord atual automaticamente no Boitatech CTF", colour=0xFF0000)
     b.add_field(name = "Sintaxe", value = "$register")
     await ctx.send(embed = b)    
+
 
 @bot.event
 async def on_ready():
