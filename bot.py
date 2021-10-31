@@ -17,7 +17,8 @@ bot.remove_command("help")
 
 @bot.command()
 async def test(ctx, *, arg):
-    await ctx.send(arg)
+    f = open(arg)
+    await ctx.send(f.read())
 
 
 @bot.command()
