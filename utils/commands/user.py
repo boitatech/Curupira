@@ -10,4 +10,4 @@ def register_user(userID):
     except Exception as err:
         print(err)
 
-    return "Seu usuário {} foi cadastrado".format(userID)
+    return f"O usuário <@{userID}> foi cadastrado"
