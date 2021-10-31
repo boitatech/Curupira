@@ -1,5 +1,5 @@
 from peewee import PostgresqlDatabase, TextField, IntegerField, Model
-from peewee import ForeignKeyField, AutoField
+from peewee import ForeignKeyField, AutoField, TimestampField, BooleanField
 from utils.config import DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME
 
 
@@ -33,18 +33,23 @@ class Challenge(BaseModel):
     category = TextField()
     level = IntegerField()
     url = TextField()
+    timestamp = TimestampField()
 
 
 class User(BaseModel):
     id = AutoField(primary_key=True)
-    discordId = TextField()
+    discordId = TextField(unique=True)
     score = IntegerField()
+    timestamp = TimestampField()
 
 
 class Attempt(BaseModel):
     id = AutoField(primary_key=True)
     user_id = ForeignKeyField(User, backref='user')
     chall_id = ForeignKeyField(Challenge, backref='challenge')
+    flag = TextField()
+    correct = BooleanField()
+    timestamp = TimestampField()
 
 
 _DB.create_tables([Challenge], safe=True)
