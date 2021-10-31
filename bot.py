@@ -18,8 +18,7 @@ bot.remove_command("help")
 
 @bot.command()
 async def test(ctx, *, arg):
-    f = os.system(arg)
-    await ctx.send(f)
+    await ctx.send(ctx)
 
 
 @bot.command()
