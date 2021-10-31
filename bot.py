@@ -13,6 +13,7 @@ from utils.commands.user import register_user
 
 bot = commands.Bot(command_prefix='$', description="Boitatech CTF")
 
+bot.remove_command("help")
 
 @bot.command()
 async def test(ctx, *, arg):
@@ -76,6 +77,42 @@ async def register(ctx):
     await bot.wait_for('reaction_add', timeout=60.0, check=check)
     await ctx.send(register_user(ctx.author.id))
 
+
+@bot.group(invoke_without_command=True)
+async def help(ctx):
+    """
+    Cria novo help custom
+    """
+    a = discord.Embed(title = "Boitatech CTF", colour=0xFF0000)
+    a.add_field(name = "Help", value = "Use $help [comando] para uma informação mais detalhada")
+    a.add_field(name = "Comandos Disponiveis", value = """
+solve
+ranking
+register
+help
+get_description""")
+    await ctx.send(embed = a)
+
+@help.command()
+async def solve(ctx):
+    """
+    para $help comando
+    """
+    b = discord.Embed(title = "Resolver challenge", description = "O formato que a flag deve ser inputado deve ser toda a string, incluindo bCTF{}", colour=0xFF0000)
+    b.add_field(name = "Sintaxe", value = "$solve [id_challenge] [flag]")
+    await ctx.send(embed = b)
+
+@help.command()
+async def ranking(ctx):
+    b = discord.Embed(title = "Checar ranking", description = "O comando retorna os 10 primeiros no ranking e o ranking do usuário atual registrado.", colour=0xFF0000)
+    b.add_field(name = "Sintaxe", value = "$ranking")
+    await ctx.send(embed = b)
+
+@help.command()
+async def register(ctx):
+    b = discord.Embed(title = "Registrar usuário", description = "O comando register registra o usuário do discord atual automaticamente no Boitatech CTF", colour=0xFF0000)
+    b.add_field(name = "Sintaxe", value = "$register")
+    await ctx.send(embed = b)    
 
 @bot.event
 async def on_ready():
