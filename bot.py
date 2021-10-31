@@ -96,7 +96,6 @@ async def challs(ctx):
 
     await ctx.send("\n============== CHALLENGES ==============")
     await ctx.send(get_challenges())
-    await ctx.send("\n============ FIM CHALLENGES ============")
 
 @bot.group(invoke_without_command=True)
 async def help(ctx):
