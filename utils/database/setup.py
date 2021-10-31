@@ -4,8 +4,6 @@ from utils.config import DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME
 
 
 def init_database():
-
-
     print('Iniciando DB...')
     _DB = None
     _DB = PostgresqlDatabase(
@@ -61,6 +59,4 @@ def get_challenge_description(challId):
                             Challenge.id == challId
                            )
 
-    import ipdb
-    ipdb.set_trace()
     return test

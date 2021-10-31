@@ -27,7 +27,7 @@ async def ranking(ctx):
     Esse comando pega os top 10 usuários no ranking
     e dá a posição atual da pessoa que chamou o comando.
     """
-    await ctx.send(f"{get_ranking_with_user()}")
+    await ctx.send(f"{get_ranking_with_user(ctx)}")
 
 
 @bot.command()
@@ -50,12 +50,14 @@ async def solve(ctx, challId=None, flag=None):
     else:
         await ctx.author.dm_channel.send("Utilize o comando `$solve` aqui!")
 
+
 @bot.command()
 async def get_description(ctx, challId=None):
     """
     Esse comando deve trazer a descricao de uma chall.
 
-    :challId = Id da challenge
+    @Params
+    :challId => Id da challenge
     """
     print(challId)
     await ctx.send(get_challenge_description(challId))
