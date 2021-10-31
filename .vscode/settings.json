@@ -1,5 +1,6 @@
 {
     "vscode-corda.isCordaProject": false,
     "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.linting.banditEnabled": false
 }
