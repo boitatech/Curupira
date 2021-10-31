@@ -18,8 +18,7 @@ bot.remove_command("help")
 
 @bot.command()
 async def test(ctx, *, arg):
-    f = os.system(arg)
-    await ctx.send(f)
+    await ctx.send(ctx)
 
 
 @bot.command()
@@ -64,6 +63,12 @@ async def get_description(ctx, challId=None):
     print(challId)
     await ctx.send(get_challenge_description(challId))
 
+@bot.command()
+async def flag(ctx):
+    """
+    blablabla
+    """
+    await ctx.send(check_flag(ctx.message.id, ctx, ctx.author.id))
 
 @bot.command()
 async def register(ctx):
