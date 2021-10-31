@@ -13,10 +13,10 @@ def get_challenges():
             Challenge.url
             )
         for challenge in challenges:
-            return challenge.name + """(""" + challenge.id + """), """+ challenge.points + """ Pontos - """ + challenge.category
-            challenge.description
-            challenge.url + """
-            ------------------------------------------------------------"""
+            return f'''{challenge.name} {challenge.id}, {challenge.points} Pontos - {challenge.category}
+            {challenge.description}
+            {challenge.url}
+            ------------------------------------------------------------'''
 
     except Exception as err:
         print(err)
