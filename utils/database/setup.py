@@ -37,7 +37,7 @@ class Challenge(BaseModel):
 
 class User(BaseModel):
     id = AutoField(primary_key=True)
-    descordId = TextField()
+    discordId = TextField()
     score = IntegerField()
 
 
