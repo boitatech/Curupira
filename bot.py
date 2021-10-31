@@ -47,6 +47,7 @@ async def solve(ctx, challId=None, flag=None):
         except Exception as err:
             print(err)
     else:
+        await ctx.message.delete()
         await ctx.author.dm_channel.send("Utilize o comando `$solve` aqui!")
 
 
