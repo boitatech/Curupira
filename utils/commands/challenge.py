@@ -1,8 +1,8 @@
 from ..database.setup import Challenge
 
 
-def get_challenges(userID):
-    # Cadastrar usuário no banco de dados
+def get_challenges():
+    # pega todas as challs
     try:
         challenges = Challenge.select()
         return challenges
