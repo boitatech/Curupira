@@ -5,6 +5,7 @@ from utils.config import TOKEN
 from utils.commands.rank import get_ranking_with_user
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
+from utils.commands.user import register_user
 
 # Database setup
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
