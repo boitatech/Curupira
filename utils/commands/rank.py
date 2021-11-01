@@ -12,7 +12,7 @@ def get_ranking_with_user(ctx):
             .having(Attempt.correct)
             .order_by(User.score.desc())
             .order_by(Attempt.timestamp.desc())
-            )
+        )
 
         ranking = ""
         for idx, user in enumerate(users.iterator()):
