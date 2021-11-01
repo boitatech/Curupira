@@ -26,7 +26,7 @@ def check_flag(challId, flag, userId):
         challInfo = Challenge.get_by_id(challId)
     except IndexError:
         return "Esse challenge id não existe!"
-    print(f"------> Terminou de procurar challenge: {challInfo}")
+    print(f"------> Terminou de procurar challenge: {challInfo} {challInfo.flag}")
 
     print("------> Vai criar attempt")
     Attempt.create(
