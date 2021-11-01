@@ -8,7 +8,7 @@ def get_ranking_with_user(ctx):
         users = (
             User.select()
             .join(Attempt)
-            .having(Attempt.user_id == User.discordId)
+            .having(Attempt.user_id == User.id)
             .having(Attempt.correct)
             .order_by(User.score.desc())
             .order_by(Attempt.timestamp.desc())
