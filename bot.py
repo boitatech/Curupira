@@ -3,7 +3,7 @@ import utils.logging.log as log
 
 from discord.ext import commands
 from utils.config import TOKEN
-from utils.commands.rank import get_ranking_with_user
+from utils.commands.rank import get_ranking_top_ten
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
@@ -27,7 +27,7 @@ async def ranking(ctx):
     Esse comando pega os top 10 usuários no ranking
     e dá a posição atual da pessoa que chamou o comando.
     """
-    await ctx.send(f"{get_ranking_with_user(ctx)}")
+    await ctx.send(f"{get_ranking_top_ten()}")
 
 
 @bot.command()
