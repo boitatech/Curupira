@@ -31,16 +31,10 @@ def check_flag(challId, flag, discordId):
     except peewee.DoesNotExist as e:
         log.err(e)
 
-    print(chall.flag)
-    print(flag)
-
-    print(user.score)
-    print(chall.points)
-    score = user.score + chall.points
     if chall.flag == flag:
         try:
             Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.timestamp(datetime.now()))
-            User.update(score=score, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId).execute()
+            User.update(score=user.score + chall.points, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId).execute()
             return "Flag correta!"
         except Exception as e:
             log.err(e)
