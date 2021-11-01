@@ -11,11 +11,11 @@ def check_flag(challId, flag, userId):
     :flag => flag do Challenge
     :userId => ID do Usuario
     """
-    if Attempt.select(Attempt.flag).where(
+    if len(list(Attempt.select(Attempt.flag).where(
                                             Attempt.correct == True,
                                             Attempt.user_id == userId,
                                             Attempt.chall_id == challId
-                                          ).length() > 0:
+                                          ))) > 0:
         return "Você já submeteu a flag para esse desafio!"
 
     challInfo = Challenge.select().where(Challenge.id == challId)
