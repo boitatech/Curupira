@@ -13,10 +13,11 @@ def get_challenges():
             Challenge.url
             )
         for challenge in challenges.iterator():
-            return f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+            challs =+ f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
 {challenge.description}
 {challenge.url}
 ------------------------------------------------------------'''
+        return challs
 
     except Exception as err:
         print(err)
