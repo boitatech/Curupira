@@ -1,13 +1,21 @@
-from ..database.setup import User
+from ..database.setup import User, Attempt
 
 
 def get_ranking_with_user(ctx):
     try:
-        users = User.select()
+        users = (
+            User.select()
+            .join(Attempt)
+            .having(Attempt.user_id == User.discordId)
+            .having(Attempt.correct)
+            .order_by(User.score.desc())
+            .order_by(Attempt.timestamp.desc())
+            )
+
         ranking = ""
-        for user in users.iterator(): #users[0].discordId
-            ranking += f'''#1 <@{user.discordId}> - {user.score}
-------------------------------------------------------------
+        for idx, user in enumerate(users.iterator()):
+            ranking += f'''#{idx} <@{user.discordId}> - {user.score}
+---------------------------------------
 '''
         return ranking
 
