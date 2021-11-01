@@ -12,3 +12,4 @@ def register_user(userID):
     except Exception as err:
         log.err(err)
         return f'<@{userID}> já foi cadastrado! Faça os desafios agora!'
+  
