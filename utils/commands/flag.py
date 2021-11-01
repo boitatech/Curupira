@@ -16,7 +16,7 @@ def check_flag(challId, flag, userId):
         Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
     except Exception as e:
-        print(e)
+        print(f"DEU MERDA AQUI: {e}")
 
     print("------> Terminou de se o user ja fez a chall")
 
@@ -26,7 +26,7 @@ def check_flag(challId, flag, userId):
         challInfo = Challenge.get_by_id(challId)
     except IndexError:
         return "Esse challenge id não existe!"
-    print("------> Terminou de procurar challenge")
+    print(f"------> Terminou de procurar challenge: {challInfo}")
 
     print("------> Vai criar attempt")
     Attempt.create(
