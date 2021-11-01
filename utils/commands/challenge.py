@@ -1,5 +1,5 @@
 from ..database.setup import Challenge
-
+from utils.logging.log import log
 
 def get_challenges():
     # pega todas as challs
@@ -22,4 +22,4 @@ def get_challenges():
         return challs
 
     except Exception as err:
-        print(err)
+        log.err(err)

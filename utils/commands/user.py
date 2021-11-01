@@ -1,4 +1,5 @@
 from ..database.setup import User
+from utils.logging.log import log
 
 
 def register_user(userID):
@@ -9,5 +10,5 @@ def register_user(userID):
         return f"O usuário <@{userID}> foi cadastrado!"
 
     except Exception as err:
-        print(err)
+        log.err(err)
         return f'<@{userID}> já foi cadastrado! Faça os desafios agora!'

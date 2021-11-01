@@ -1,4 +1,5 @@
 from ..database.setup import User
+from utils.logging.log import log
 
 
 def get_ranking_with_user(ctx):
@@ -12,4 +13,4 @@ def get_ranking_with_user(ctx):
         return ranking
 
     except Exception as err:
-        print(err)
+        log.err(err)
