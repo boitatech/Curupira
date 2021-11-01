@@ -1,5 +1,7 @@
 import utils.logging.log as log
-from ..database.setup import User, Attempt
+import discord
+
+from ..database.setup import User
 
 
 def get_ranking_top_ten():
