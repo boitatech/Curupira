@@ -1,7 +1,7 @@
 import utils.logging.log as log
 
 from ..database.setup import Attempt, Challenge, User
-import peewee
+import peewee, datetime
 
 
 def check_flag(challId, flag, discordId):
@@ -29,20 +29,21 @@ def check_flag(challId, flag, discordId):
         return "Você já submeteu a flag desse desafio!"
     except peewee.DoesNotExist as e:
         log.err(e)
-    
+
     print(chall.flag)
     print(flag)
 
     if chall.flag == flag:
         try:
-            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True)
+            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.datetime.now)
+            User.update(score=user.score + chall.points, last_submit=datetime.datetime.now).where(User.discordId == discordId)
             return "Flag correta!"
         except Exception as e:
             log.err(e)
             return "Erro ao criar Attempt True"
     else:
         try:
-            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False) 
+            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False, timestamp=datetime.datetime.now) 
             return "Flag incorreta!"
         except Exception as e:
             log.err(e)
