@@ -17,7 +17,8 @@ def get_challenges():
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
 {challenge.description}
 {challenge.url}
-------------------------------------------------------------'''
+------------------------------------------------------------
+'''
         return challs
 
     except Exception as err:
