@@ -31,13 +31,14 @@ def check_flag(challId, flag, userId):
     print(f"------> Terminou de procurar challenge: {challInfo} {challInfo.flag}")
 
     print("------> Vai criar attempt")
-    Attempt.create(
+    createAttempt = Attempt(
             user_id=userId,
             chall_id=challId,
             flag=flag,
-            correct=challInfo.flag == flag,
-            timestamp=datetime.timestamp(datetime.now())
+            correct=challInfo.flag == flag
         )
+    createAttempt.save()
+    
     print("------> Terminou de criar attempt")
 
     if challInfo.flag == flag:
