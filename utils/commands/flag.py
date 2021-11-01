@@ -36,10 +36,11 @@ def check_flag(challId, flag, discordId):
 
     print(user.score)
     print(chall.points)
+    score = user.score + chall.points
     if chall.flag == flag:
         try:
             Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.timestamp(datetime.now()))
-            User.update(score=user.score + chall.points, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId)
+            User.update(score=score, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId).execute()
             return "Flag correta!"
         except Exception as e:
             log.err(e)
