@@ -13,9 +13,11 @@ def get_ranking_top_ten():
             .limit(10)
             )
 
-        ranking = ""
-        for idx, user in enumerate(users.iterator()):
-            ranking += f'#{idx+1} <@{user.discordId}> - {user.score}\n'
+        ranking = "".join(
+            f'#{idx+1} <@{user.discordId}> - {user.score}\n'
+            for idx, user in enumerate(users.iterator())
+        )
+
         return discord.Embed(title="Ranking", description=ranking)
 
     except Exception as err:

@@ -16,7 +16,7 @@ def check_flag(challId, flag, userId):
     try:
         chall = Challenge.get_by_id(challId)
     except Exception as e:
-        log.error(e)
+        log.err(e)
         return "Esse challenge id não existe!"
 
     try:
