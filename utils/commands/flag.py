@@ -18,22 +18,13 @@ def check_flag(challId, flag, userId):
                                           ).count() > 0:
         return "Você já submeteu a flag para esse desafio!"
 
-    challInfo = Challenge.select().where(Challenge.id == challId)
-
-    print(dir(challInfo))
-
-    test = [Challenge.select().where(Challenge.id == challId)]
-    print(f"test: {test}")
-
-    teste2 = [Challenge.select().where(Challenge.id == challId)]
-    test2 = [i for i in teste2] 
-    print(f"test2: {test2}")
+    challInfo = Challenge.select().where(Challenge.id == challId)[0]
 
     Attempt.create(
             user_id=userId,
             chall_id=challId,
             flag=flag,
-            correct=True if challInfo.flag == flag else False,
+            correct=True if challInfo.flag == flag else False, 
             timestamp=datetime.timestamp()
         )
 
