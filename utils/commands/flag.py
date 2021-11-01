@@ -8,16 +8,13 @@ def check_flag(challId, flag, userId):
 
     @Params
     :challId => ID da Challenge
-    :flag => flag do Challenge
+    :flag => flag do Challenge  
     :userId => ID do Usuario
     """
     print("------> Vai procurar se o user ja fez a chall")
-    if len(list(Attempt.select(Attempt.flag).where(
-                                            Attempt.correct == True,
-                                            Attempt.user_id == userId,
-                                            Attempt.chall_id == challId
-                                          ))) > 0:
-        return "Você já submeteu a flag para esse desafio!"
+    if Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId):
+        return "Você já submeteu a flag desse desafio!"
+    print(Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId))
     print("------> Terminou de se o user ja fez a chall")
 
     print("------> Vai procurar challenge")
@@ -32,7 +29,7 @@ def check_flag(challId, flag, userId):
             user_id=userId,
             chall_id=challId,
             flag=flag,
-            correct=True if challInfo.flag == flag else False,
+            correct=challInfo.flag == flag,
             timestamp=datetime.timestamp(datetime.now())
         )
     print("------> Terminou de criar attempt")
