@@ -48,6 +48,7 @@ class Attempt(BaseModel):
     user_id = ForeignKeyField(User, backref='user')
     chall_id = ForeignKeyField(Challenge, backref='challenge')
     flag = TextField()
+    tries = TextField()
     correct = BooleanField()
     timestamp = TimestampField()
 
