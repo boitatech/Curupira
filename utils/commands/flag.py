@@ -17,7 +17,7 @@ def check_flag(challId, flag, userId):
     try:
         Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
-    except Exception as e:
+    except peewee.DoesNotExist as e:
         log.err(e)
 
     print("------> Terminou de se o user ja fez a chall")
