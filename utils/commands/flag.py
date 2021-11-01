@@ -22,9 +22,9 @@ def check_flag(challId, flag, userId):
 
     print("------> Vai procurar challenge")
     try:
-        challInfo = Challenge.select().where(Challenge.id == challId)[0]
+        challInfo = Challenge.get_by_id(challId)
     except IndexError:
-        return "Esse challange id não existe!"
+        return "Esse challenge id não existe!"
     print("------> Terminou de procurar challenge")
 
     print("------> Vai criar attempt")
