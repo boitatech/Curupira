@@ -1,6 +1,7 @@
 import utils.logging.log as log
 
 from ..database.setup import Attempt, Challenge
+import peewee
 
 
 def check_flag(challId, flag, userId):
@@ -25,6 +26,7 @@ def check_flag(challId, flag, userId):
     try:
         challInfo = Challenge.get_by_id(challId)
     except Exception as e:
+        log.err(e)
         return "Esse challenge id não existe!"
     print(f"------> Terminou de procurar challenge: {challInfo} {challInfo.flag}")
 
