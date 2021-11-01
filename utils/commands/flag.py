@@ -1,8 +1,6 @@
 import utils.logging.log as log
 
 from ..database.setup import Attempt, Challenge
-from datetime import datetime
-from peewee import DoesNotExist
 
 
 def check_flag(challId, flag, userId):
