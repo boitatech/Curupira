@@ -1,5 +1,6 @@
 from ..database.setup import Attempt, Challenge
 from datetime import datetime
+from peewee import DoesNotExist
 
 
 def check_flag(challId, flag, userId):
@@ -8,14 +9,15 @@ def check_flag(challId, flag, userId):
 
     @Params
     :challId => ID da Challenge
-    :flag => flag do Challenge  
+    :flag => flag do Challenge
     :userId => ID do Usuario
     """
     print("------> Vai procurar se o user ja fez a chall")
-    if Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId):
+    try:
+        Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
-
-    print(Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId))
+    except DoesNotExist as e:
+        print(e)
 
     print("------> Terminou de se o user ja fez a chall")
 
