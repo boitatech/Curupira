@@ -1,4 +1,5 @@
 import utils.logging.log as log
+import datetime
 
 from peewee import PostgresqlDatabase, TextField, IntegerField, Model
 from peewee import ForeignKeyField, AutoField, TimestampField, BooleanField
@@ -34,14 +35,13 @@ class Challenge(BaseModel):
     category = TextField()
     level = IntegerField()
     url = TextField()
-    timestamp = TimestampField()
 
 
 class User(BaseModel):
     id = AutoField(primary_key=True)
     discordId = TextField(unique=True)
     score = IntegerField()
-    timestamp = TimestampField()
+    last_submit = TimestampField()
 
 
 class Attempt(BaseModel):
@@ -50,7 +50,7 @@ class Attempt(BaseModel):
     chall_id = ForeignKeyField(Challenge, backref='challenge')
     flag = TextField()
     correct = BooleanField()
-    timestamp = TimestampField()
+    timestamp = TimestampField(default=datetime.datetime.now)
 
 
 _DB.create_tables([Challenge], safe=True)
