@@ -14,6 +14,12 @@ def check_flag(challId, flag, userId):
     :userId => ID do Usuario
     """
     try:
+        chall = Challenge.get_by_id(challId)
+    except Exception as e:
+        log.error(e)
+        return "Esse challenge id não existe!"
+
+    try:
         Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
     except peewee.DoesNotExist as e:
