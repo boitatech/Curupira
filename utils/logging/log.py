@@ -50,8 +50,7 @@ def __log(type: __msg_type, content: str) -> None:
 
 
 # Public
-class log:
-    def debug(content: str) -> None: __log(__msg_type.debug, content)
-    def success(content: str) -> None: __log(__msg_type.success, content)
-    def err(content: str) -> None: __log(__msg_type.err, content)
-    def warn(content: str) -> None: __log(__msg_type.warn, content)
+def debug(content: str) -> None: __log(__msg_type.debug, content)
+def success(content: str) -> None: __log(__msg_type.success, content)
+def err(content: str) -> None: __log(__msg_type.err, content)
+def warn(content: str) -> None: __log(__msg_type.warn, content)

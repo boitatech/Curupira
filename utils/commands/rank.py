@@ -1,4 +1,5 @@
-from utils.logging.log import log
+import utils.logging.log as log
+
 from ..database.setup import User, Attempt
 
 

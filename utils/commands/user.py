@@ -1,5 +1,6 @@
+import utils.logging.log as log
+
 from ..database.setup import User
-from utils.logging.log import log
 
 
 def register_user(userID):
