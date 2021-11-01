@@ -27,7 +27,6 @@ def check_flag(challId, flag, userId):
     try:
         challInfo = Challenge.get_by_id(challId)
     except Exception as e:
-        log.debug("Erro: " + e)
         return "Esse challenge id não existe!"
     print(f"------> Terminou de procurar challenge: {challInfo} {challInfo.flag}")
 
