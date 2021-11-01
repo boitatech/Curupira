@@ -12,8 +12,9 @@ def get_challenges():
             Challenge.description,
             Challenge.url
             )
+        challs = ""
         for challenge in challenges.iterator():
-            challs =+ f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
 {challenge.description}
 {challenge.url}
 ------------------------------------------------------------'''
