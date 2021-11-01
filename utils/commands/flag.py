@@ -1,6 +1,5 @@
 from ..database.setup import Attempt, Challenge
 from datetime import datetime
-from peewee import DoesNotExist
 
 
 def check_flag(challId, flag, userId):
@@ -16,12 +15,13 @@ def check_flag(challId, flag, userId):
     try:
         Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
-    except DoesNotExist as e:
+    except Exception as e:
         print(e)
 
     print("------> Terminou de se o user ja fez a chall")
 
     print("------> Vai procurar challenge")
+
     try:
         challInfo = Challenge.get_by_id(challId)
     except IndexError:
