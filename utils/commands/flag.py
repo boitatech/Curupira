@@ -33,6 +33,8 @@ def check_flag(challId, flag, discordId):
     print(chall.flag)
     print(flag)
 
+    print(user.score)
+    print(chall.points)
     if chall.flag == flag:
         try:
             Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.datetime.now)
@@ -43,7 +45,7 @@ def check_flag(challId, flag, discordId):
             return "Erro ao criar Attempt True"
     else:
         try:
-            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False, timestamp=datetime.datetime.now) 
+            Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False)
             return "Flag incorreta!"
         except Exception as e:
             log.err(e)
