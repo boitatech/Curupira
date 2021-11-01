@@ -7,6 +7,7 @@ from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
 from utils.commands.challenge import get_challenges
+from utils.logging.log import log
 # Database setup
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
 
@@ -45,7 +46,7 @@ async def solve(ctx, challId=None, flag=None):
             else:
                 await ctx.author.dm_channel.send("Você precisa mandar uma `challId` e uma `flag`!")
         except Exception as err:
-            print(err)
+            log.err(err)
     else:
         await ctx.message.delete()
         await ctx.author.dm_channel.send("Utilize o comando `$solve` aqui!")
@@ -59,7 +60,7 @@ async def get_description(ctx, challId=None):
     @Params
     :challId => Id da challenge
     """
-    print(challId)
+    log.debug(challId)
     await ctx.send(get_challenge_description(challId))
 
 
@@ -139,8 +140,8 @@ async def register(ctx):
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game('Boitatech CTF'))
-    print('Connected to bot: {}'.format(bot.user.name))
-    print('Bot ID: {}'.format(bot.user.id))
+    log.debug('Connected to bot: {}'.format(bot.user.name))
+    log.debug('Bot ID: {}'.format(bot.user.id))
 
 
 if __name__ == "__main__":

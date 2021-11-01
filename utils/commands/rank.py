@@ -1,3 +1,4 @@
+from utils.logging.log import log
 from ..database.setup import User, Attempt
 
 
@@ -20,4 +21,4 @@ def get_ranking_with_user(ctx):
         return ranking
 
     except Exception as err:
-        print(err)
+        log.err(err)
