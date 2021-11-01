@@ -27,7 +27,7 @@ async def ranking(ctx):
     Esse comando pega os top 10 usuários no ranking
     e dá a posição atual da pessoa que chamou o comando.
     """
-    await ctx.send(f"{get_ranking_top_ten()}")
+    await ctx.send(embed=get_ranking_top_ten())
 
 
 @bot.command()
