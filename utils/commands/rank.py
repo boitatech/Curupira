@@ -1,7 +1,7 @@
 from ..database.setup import User
 
 
-def get_ranking_with_user():
+def get_ranking_with_user(ctx):
     try:
         users = User.select()
         ranking = ""
