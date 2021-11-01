@@ -35,9 +35,9 @@ def check_flag(challId, flag, userId):
             user_id=userId,
             chall_id=challId,
             flag=flag,
-            correct=challInfo.flag == flag,
-            timestamp=datetime.timestamp(datetime.now())
-        )
+            correct=challInfo.flag == flag
+            )
+
     print("------> Terminou de criar attempt")
 
     if challInfo.flag == flag:
