@@ -25,16 +25,19 @@ def check_flag(challId, flag, userId):
     except peewee.DoesNotExist as e:
         log.err(e)
     
+    print(chall.flag)
+    print(flag)
+
     if chall.flag == flag:
         try:
-            Attempt.create(flag=flag, correct=True) # user_id=userId, chall_id=challId,
+            Attempt.create(user_id=1, chall_id=1, flag=flag, correct=True)
             return "Flag correta!"
         except Exception as e:
             log.err(e)
             return "Erro ao criar Attempt True"
     else:
         try:
-            Attempt.create(flag=flag, correct=False) # user_id=userId, chall_id=challId, 
+            Attempt.create(user_id=1, chall_id=1, flag=flag, correct=False) 
             return "Flag incorreta!"
         except Exception as e:
             log.err(e)
