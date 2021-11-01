@@ -18,7 +18,7 @@ def check_flag(challId, flag, userId):
     try:
         Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId)
         return "Você já submeteu a flag desse desafio!"
-    except DoesNotExist as e:
+    except Exception as e:
         log.err(e)
 
     print("------> Terminou de se o user ja fez a chall")
@@ -38,7 +38,7 @@ def check_flag(challId, flag, userId):
             correct=challInfo.flag == flag
         )
     createAttempt.save()
-    
+
     print("------> Terminou de criar attempt")
 
     if challInfo.flag == flag:
