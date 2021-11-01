@@ -26,7 +26,8 @@ def check_flag(challId, flag, userId):
     log.debug("Vai procurar challenge")
     try:
         challInfo = Challenge.get_by_id(challId)
-    except IndexError:
+    except Exception as e:
+        log.debug("Erro: " + e)
         return "Esse challenge id não existe!"
     print(f"------> Terminou de procurar challenge: {challInfo} {challInfo.flag}")
 
