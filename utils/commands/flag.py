@@ -14,7 +14,9 @@ def check_flag(challId, flag, userId):
     print("------> Vai procurar se o user ja fez a chall")
     if Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId):
         return "Você já submeteu a flag desse desafio!"
+
     print(Attempt.get(Attempt.correct == True, Attempt.user_id == userId, Attempt.chall_id == challId))
+
     print("------> Terminou de se o user ja fez a chall")
 
     print("------> Vai procurar challenge")
