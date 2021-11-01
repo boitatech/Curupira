@@ -8,7 +8,7 @@ def get_ranking_top_ten():
     try:
         users = (
             User.select()
-            .order_by(User.score.desc())
+            .order_by(User.score.desc(), User.last_submit.asc())
             .limit(10)
             )
 
