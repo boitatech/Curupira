@@ -11,14 +11,23 @@ def check_flag(challId, flag, userId):
     :flag => flag do Challenge
     :userId => ID do Usuario
     """
-    if len(list(Attempt.select(Attempt.flag).where(
+    if Attempt.select(Attempt.flag).where(
                                             Attempt.correct == True,
                                             Attempt.user_id == userId,
                                             Attempt.chall_id == challId
-                                          ))) > 0:
+                                          ).count() > 0:
         return "Você já submeteu a flag para esse desafio!"
 
     challInfo = Challenge.select().where(Challenge.id == challId)
+
+    print(dir(challInfo))
+
+    test = [Challenge.select().where(Challenge.id == challId)]
+    print(f"test: {test}")
+
+    teste2 = [Challenge.select().where(Challenge.id == challId)]
+    test2 = [i for i in teste2] 
+    print(f"test2: {test2}")
 
     Attempt.create(
             user_id=userId,
@@ -32,3 +41,7 @@ def check_flag(challId, flag, userId):
         return f"Parabéns!!! Você resolveu o desafio {challInfo.name}!"
 
     return "Flag incorreta!"
+
+
+# a = Attempt.select(Attempt.flag)
+# result = [i for i in a]
