@@ -13,7 +13,7 @@ def get_challenges():
             Challenge.url
             )
         challs = ""
-        for challenge in challenges.iterator(): #challanges[0].name
+        for challenge in challenges.iterator(): 
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
 {challenge.description}
 {challenge.url}
