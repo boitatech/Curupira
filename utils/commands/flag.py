@@ -27,20 +27,19 @@ def check_flag(challId, flag, userId):
     
     if chall.flag == flag:
         try:
-            Attempt.create(user_id=userId, chall_id=challId, flag=flag, correct=True)
+            Attempt.create(flag=flag, correct=True) # user_id=userId, chall_id=challId,
             return "Flag correta!"
         except Exception as e:
             log.err(e)
-            return "Erro ao criar Attempt"
+            return "Erro ao criar Attempt True"
     else:
         try:
-            Attempt.create(user_id=userId, chall_id=challId, flag=flag, correct=False)
+            Attempt.create(flag=flag, correct=False) # user_id=userId, chall_id=challId, 
             return "Flag incorreta!"
         except Exception as e:
             log.err(e)
-            return "Erro ao criar Attempt"
+            return "Erro ao criar Attempt False"
 
-    return "Deu merda aqui!"
 
 
 # a = Attempt.select(Attempt.flag)
