@@ -1,4 +1,5 @@
 import discord
+import utils.logging.log as log
 
 from discord.ext import commands
 from utils.config import TOKEN
@@ -7,7 +8,6 @@ from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
 from utils.commands.challenge import get_challenges
-from utils.logging.log import log
 # Database setup
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
 
