@@ -6,11 +6,8 @@ def get_ranking_with_user(ctx):
     try:
         users = (
             User.select()
-            #.join(Attempt)
-            #.having(Attempt.user_id == User.id)
-            #.having(Attempt.correct)
             .order_by(User.score.desc())
-            #.order_by(Attempt.timestamp.desc())
+            .order_by(User.last_submit.desc())
             )
 
         ranking = ""
