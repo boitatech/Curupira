@@ -24,6 +24,22 @@ def check_flag(challId, flag, userId):
         return "Você já submeteu a flag desse desafio!"
     except peewee.DoesNotExist as e:
         log.err(e)
+    
+    if chall.flag == flag:
+        try:
+            Attempt.create(user_id=userId, chall_id=challId, flag=flag, correct=True)
+            return "Flag correta!"
+        except Exception as e:
+            log.err(e)
+            return "Erro ao criar Attempt"
+    else:
+        try:
+            Attempt.create(user_id=userId, chall_id=challId, flag=flag, correct=False)
+            return "Flag incorreta!"
+        except Exception as e:
+            log.err(e)
+            return "Erro ao criar Attempt"
+
     return "Deu merda aqui!"
 
 
