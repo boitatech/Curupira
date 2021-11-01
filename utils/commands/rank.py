@@ -12,10 +12,8 @@ def get_ranking_with_user(ctx):
 
         ranking = ""
         for idx, user in enumerate(users.iterator()):
-            ranking += f'''#{idx} <@{user.discordId}> - {user.score}
----------------------------------------
-'''
-        return ranking
+            ranking += f'#{idx} <@{user.discordId}> - {user.score}\n'
+        return discord.Embed(title="Ranking", description=ranking)
 
     except Exception as err:
         log.err(err)
