@@ -22,7 +22,7 @@ def get_challenges(ctx):
         print('terminou de pegar a challenge')
         
         print('vai pegar a attempt')
-        attempts = Attempt.select(Attempt.chall_id).where(Attempt.correct == True, Attempt.user_id == user.id)
+        attempts = Attempt.select(Attempt.chall_id).where(Attempt.correct == True and Attempt.user_id == user.id)
         print('terminou de pegar a attempt')
 
         challs = ""
