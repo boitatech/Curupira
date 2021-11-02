@@ -70,14 +70,6 @@ async def get_description(ctx, challId=None):
 
 
 @bot.command()
-async def flag(ctx):
-    """
-    blablabla
-    """
-    await ctx.send(check_flag(ctx.message.id, ctx, ctx.author.id))
-
-
-@bot.command()
 async def register(ctx):
     """
     Registra o usuário
@@ -102,7 +94,7 @@ async def challs(ctx):
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
 
-    await ctx.send(embed=get_challenges(ctx))
+    await ctx.author.dm_channel.send(embed=get_challenges(ctx))
 
 
 @bot.group(invoke_without_command=True)
