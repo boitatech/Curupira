@@ -13,12 +13,14 @@ def get_challenges(ctx):
         print('=====> terminou de pegar o user')
         
         print('=====> vai pegar a challenge')
-        challenges = Challenge.select(Challenge.id,
-                                      Challenge.name, 
-                                      Challenge.points, 
-                                      Challenge.category, 
-                                      Challenge.description,
-                                      Challenge.url)
+        challenges = Challenge.select(
+            Challenge.id,
+            Challenge.name, 
+            Challenge.points, 
+            Challenge.category, 
+            Challenge.description,
+            Challenge.url
+            )
         print('=====> terminou de pegar a challenge')
         
         print('=====> vai pegar a attempt')
