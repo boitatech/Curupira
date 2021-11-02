@@ -98,6 +98,9 @@ async def challs(ctx):
     """
     Mostras as challs
     """
+    await ctx.author.create_dm()
+    if not isinstance(ctx.channel, discord.channel.DMChannel):
+        await ctx.message.delete()
 
     await ctx.send(embed=get_challenges(ctx))
 
