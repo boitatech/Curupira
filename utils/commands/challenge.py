@@ -29,11 +29,11 @@ def get_challenges(ctx):
 
         challs = ""
         for challenge in challenges.iterator():
-            if len(attempts) > 0:
-                # for attempt in attempts.iterator():
-                print(f"<> <> <>Attempt: {attempt}")
-                # if challenge.id == attempt.chall_id:
-                print('O USER JA FEZ A CHALL')
+            if len(attempts) >= 1:
+                for attempt in attempts.iterator():
+                    print(f"<> <> <>Attempt: {attempt}")
+                    if challenge.id == attempt.chall_id:
+                        print('O USER JA FEZ A CHALL')
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
