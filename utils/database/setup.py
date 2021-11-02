@@ -5,6 +5,7 @@ from peewee import PostgresqlDatabase, TextField, IntegerField, Model
 from peewee import ForeignKeyField, AutoField, TimestampField, BooleanField
 from utils.config import DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOSTNAME
 
+
 def init_database():
     log.debug('Iniciando DB...')
     _DB = None

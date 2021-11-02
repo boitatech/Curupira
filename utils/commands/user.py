@@ -1,10 +1,14 @@
-import utils.logging.log as log
-
 from ..database.setup import User
+import utils.logging.log as log
 
 
 def register_user(userID):
-    # Cadastrar usuário no banco de dados
+    """
+    Essa funcao registra um usuario no banco de dados do CTF
+
+    @Params
+    :userID => Id da conta do Discord
+    """
     try:
         user_registered = User(discordId=userID, score=0)
         user_registered.save()

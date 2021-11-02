@@ -1,8 +1,8 @@
 import utils.logging.log as log
 
 from ..database.setup import Attempt, Challenge, User
-import peewee
 from datetime import datetime
+import peewee
 
 
 def check_flag(challId, flag, discordId):
@@ -46,8 +46,3 @@ def check_flag(challId, flag, discordId):
         except Exception as e:
             log.err(e)
             return "Erro ao criar Attempt False"
-
-
-
-# a = Attempt.select(Attempt.flag)
-# result = [i for i in a]

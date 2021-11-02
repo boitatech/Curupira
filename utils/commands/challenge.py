@@ -3,7 +3,9 @@ import utils.logging.log as log
 from ..database.setup import Challenge
 
 def get_challenges():
-    # pega todas as challs
+    """
+    Essa funcao retorna todos os challenges cadastrados no CTF
+    """
     try:
         challenges = Challenge.select(
             Challenge.id,
@@ -13,6 +15,7 @@ def get_challenges():
             Challenge.description,
             Challenge.url
             )
+
         return "".join(
             f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
 {challenge.description}
@@ -21,7 +24,6 @@ def get_challenges():
 '''
             for challenge in challenges.iterator()
         )
-
-
+      
     except Exception as err:
         log.err(err)
