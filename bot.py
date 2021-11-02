@@ -27,8 +27,11 @@ async def ranking(ctx):
     Esse comando pega os top 10 usuários no ranking
     e dá a posição atual da pessoa que chamou o comando.
     """
-    await ctx.message.delete()
-    await ctx.author.dm_channel.send(embed="asd")
+    await ctx.author.create_dm()
+    if not isinstance(ctx.channel, discord.channel.DMChannel):
+        await ctx.message.delete()
+
+    await ctx.author.dm_channel.send(embed=get_ranking_top_ten())
 
 
 @bot.command()
