@@ -1,6 +1,6 @@
-import utils.logging.log as log
-
 from ..database.setup import Challenge
+import utils.logging.log as log
+import discord
 
 def get_challenges():
     """
@@ -22,6 +22,6 @@ def get_challenges():
                           {challenge.url}
                        ------------------------------------------------------------
                        '''
-        return challs
+        return discord.Embed(title="Ranking", description=challs)
     except Exception as err:
         log.err(err)
