@@ -28,7 +28,7 @@ async def ranking(ctx):
     e dá a posição atual da pessoa que chamou o comando.
     """
     await ctx.message.delete()
-    await ctx.author.dm_channel.send(embed=get_ranking_top_ten())
+    await ctx.author.dm_channel.send(embed="asd")
 
 
 @bot.command()
