@@ -15,13 +15,15 @@ def get_challenges():
             Challenge.description,
             Challenge.url
             )
-        challs = ""
-        for challenge in challenges.iterator(): 
-            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
-                          {challenge.description}
-                          {challenge.url}
-                       ------------------------------------------------------------
-                       '''
-        return challs
+
+        return "".join(
+            f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+{challenge.description}
+{challenge.url}
+------------------------------------------------------------
+'''
+            for challenge in challenges.iterator()
+        )
+      
     except Exception as err:
         log.err(err)

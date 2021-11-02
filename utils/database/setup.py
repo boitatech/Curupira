@@ -60,10 +60,8 @@ _DB.create_tables([Attempt], safe=True)
 
 
 def get_challenge_description(challId):
-    test = Challenge.select(
+    return Challenge.select(
                             Challenge.description
                            ).where(
                             Challenge.id == challId
                            )
-
-    return test
