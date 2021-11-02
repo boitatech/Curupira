@@ -16,6 +16,7 @@ bot = commands.Bot(command_prefix='$', description="Boitatech CTF")
 
 bot.remove_command("help")
 
+
 @bot.command()
 async def test(ctx, *, arg):
     await ctx.send(ctx)
@@ -94,7 +95,8 @@ async def challs(ctx):
     Mostras as challs
     """
 
-    await ctx.send(embed=get_challenges())
+    await ctx.send(embed=get_challenges(ctx))
+
 
 @bot.group(invoke_without_command=True)
 async def help(ctx):
@@ -103,12 +105,11 @@ async def help(ctx):
     """
     a = discord.Embed(title="Boitatech CTF", colour=0xFF0000)
     a.add_field(name="Help", value="Use $help [comando] para uma informação mais detalhada")
-    a.add_field(name="Comandos Disponiveis", value="""
-solve
-ranking
-register
-help
-get_description""")
+    a.add_field(name="Comandos Disponiveis", value="""solve
+                                                      ranking
+                                                      register
+                                                      help
+                                                      get_description""")
     await ctx.send(embed=a)
 
 
