@@ -1,8 +1,8 @@
-from ..database.setup import Challenge
+from ..database.setup import Challenge, Attempt
 import utils.logging.log as log
 import discord
 
-def get_challenges():
+def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
@@ -14,7 +14,7 @@ def get_challenges():
             Challenge.category, 
             Challenge.description,
             Challenge.url
-            )
+            ).join(Attempt, on=(Challenge.id == Attempt.chall_id)).where(Attempt.correct == False)
         challs = "".join(
             f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
