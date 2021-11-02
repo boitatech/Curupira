@@ -1,20 +1,18 @@
-from ..database.setup import Challenge
+from ..database.setup import Challenge, Attempt
 import utils.logging.log as log
 import discord
 
-def get_challenges():
+def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
     try:
-        challenges = Challenge.select(
-            Challenge.id,
-            Challenge.name, 
-            Challenge.points, 
-            Challenge.category, 
-            Challenge.description,
-            Challenge.url
-            )
+        challenges = Challenge.select(Challenge.id,
+                                      Challenge.name, 
+                                      Challenge.points, 
+                                      Challenge.category, 
+                                      Challenge.description,
+                                      Challenge.url).join(Attempt, on=(Challenge.id == Attempt.chall_id)).where(Attempt.correct == False)
         challs = ""
         for challenge in challenges.iterator(): 
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
