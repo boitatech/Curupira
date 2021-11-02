@@ -7,15 +7,16 @@ def get_challenges(ctx):
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
     try:
-        challenges = Challenge.select(Challenge.id,
-                                      Challenge.name, 
-                                      Challenge.points, 
-                                      Challenge.category, 
-                                      Challenge.description,
-                                      Challenge.url).join(Attempt, on=(Challenge.id == Attempt.chall_id)).where(Attempt.correct == False)
-        challs = ""
-        for challenge in challenges.iterator(): 
-            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+        challenges = Challenge.select(
+            Challenge.id,
+            Challenge.name, 
+            Challenge.points, 
+            Challenge.category, 
+            Challenge.description,
+            Challenge.url
+            ).join(Attempt, on=(Challenge.id == Attempt.chall_id)).where(Attempt.correct == False)
+        challs = "".join(
+            f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
                        ------------------------------------------------------------
