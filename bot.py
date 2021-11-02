@@ -70,14 +70,6 @@ async def get_description(ctx, challId=None):
 
 
 @bot.command()
-async def flag(ctx):
-    """
-    blablabla
-    """
-    await ctx.send(check_flag(ctx.message.id, ctx, ctx.author.id))
-
-
-@bot.command()
 async def register(ctx):
     """
     Registra o usuário

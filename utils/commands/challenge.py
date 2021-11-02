@@ -20,6 +20,9 @@ def get_challenges(ctx):
                           {challenge.url}
                        ------------------------------------------------------------
                        '''
+            for challenge in challenges.iterator()
+        )
+
         return discord.Embed(title="Challeges", description=challs)
     except Exception as err:
         log.err(err)
