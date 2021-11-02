@@ -42,6 +42,6 @@ def get_challenges(ctx):
             # for challenge in challenges.iterator()
         # )
 
-        return discord.Embed(title="Challeges", description=challs)
+        return discord.Embed(title="Challenges", description=challs)
     except Exception as err:
         log.err(err)
