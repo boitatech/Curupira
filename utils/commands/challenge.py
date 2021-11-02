@@ -22,6 +22,6 @@ def get_challenges():
                           {challenge.url}
                        ------------------------------------------------------------
                        '''
-        return discord.Embed(title="Ranking", description=challs)
+        return discord.Embed(title="Challeges", description=challs)
     except Exception as err:
         log.err(err)

@@ -94,7 +94,6 @@ async def challs(ctx):
     Mostras as challs
     """
 
-    await ctx.send("\n============== CHALLENGES ==============")
     await ctx.send(embed=get_challenges())
 
 @bot.group(invoke_without_command=True)
