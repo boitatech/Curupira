@@ -15,13 +15,15 @@ def get_challenges():
             Challenge.description,
             Challenge.url
             )
-        challs = ""
-        for challenge in challenges.iterator(): 
-            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+        challs = "".join(
+            f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
                        ------------------------------------------------------------
                        '''
+            for challenge in challenges.iterator()
+        )
+
         return discord.Embed(title="Challeges", description=challs)
     except Exception as err:
         log.err(err)
