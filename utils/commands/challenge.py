@@ -1,6 +1,6 @@
-import utils.logging.log as log
-
 from ..database.setup import Challenge
+import utils.logging.log as log
+import discord
 
 def get_challenges():
     """
@@ -15,15 +15,13 @@ def get_challenges():
             Challenge.description,
             Challenge.url
             )
-
-        return "".join(
-            f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
-{challenge.description}
-{challenge.url}
-------------------------------------------------------------
-'''
-            for challenge in challenges.iterator()
-        )
-      
+        challs = ""
+        for challenge in challenges.iterator(): 
+            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+                          {challenge.description}
+                          {challenge.url}
+                       ------------------------------------------------------------
+                       '''
+        return discord.Embed(title="Challeges", description=challs)
     except Exception as err:
         log.err(err)
