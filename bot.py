@@ -86,6 +86,8 @@ async def challs(ctx):
     if isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.author.dm_channel.send(embed=get_challenges(ctx))
     await ctx.message.delete()
+    await ctx.author.dm_channel.send("Utilize o comando `$challs` aqui!")
+
 
 
 @bot.group(invoke_without_command=True)

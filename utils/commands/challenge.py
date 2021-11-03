@@ -9,13 +9,6 @@ def get_challenges(ctx):
     """
     try:
         user = User.get(User.discordId == ctx.author.id)
-        print([use for use in user])
-    except Exception as e:
-        log.err(e)
-        return discord.Embed(title="Registre-se!", description="Você não está cadastrado, use o comando $register para se cadastrar!") 
-
-    try:
-        user = User.get(User.discordId == ctx.author.id)
 
         challenges = Challenge.select(
                                     Challenge.id,
