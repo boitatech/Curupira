@@ -24,7 +24,7 @@ def get_challenges(ctx):
         print('=====> terminou de pegar a challenge')
         
         print('=====> vai pegar a attempt')
-        attempts = Attempt.select(Attempt.chall_id).where(Attempt.correct == True and Attempt.user_id == user.id)
+        attempts = Attempt.select().where(Attempt.correct == True, Attempt.user_id == user.id)
         print('=====> terminou de pegar a attempt')
 
         challs = ""
@@ -38,7 +38,7 @@ def get_challenges(ctx):
                         print(f"Challenges = {type(challenges)} = {challenges}")
                         print("&" * 30)
                         print(f"Challenge = {type(challenge)} = {challenge}")
-                        challenges.remove(challenge) 
+                        challenges.remove(challenge)
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
