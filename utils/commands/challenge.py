@@ -40,7 +40,7 @@ def get_challenges(ctx):
                     print(challenge.id)
                     print(attempt.id)
                     print("#*" * 30)
-                    print(chall_id_id)
+                    print(attempt.chall_id_id)
 
                     if challenge.id == attempt.chall_id:
                         print(f"Challenges = {type(challenges)} = {challenges}")
