@@ -24,10 +24,11 @@ async def ranking(ctx):
     e dá a posição atual da pessoa que chamou o comando.
     """
     await ctx.author.create_dm()
-    if not isinstance(ctx.channel, discord.channel.DMChannel):
+    if isinstance(ctx.channel, discord.channel.DMChannel):
+        await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
+    else:
         await ctx.message.delete()
-
-    await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
+        await ctx.author.dm_channel.send("Utilize o comando `$ranking` aqui!")
 
 
 @bot.command()
