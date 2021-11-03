@@ -9,6 +9,12 @@ def get_ranking_top_ten(ctx):
     Essa funcao retorna os top 10 colocados no CTF
     """
     try:
+        user = User.get(User.discordId == discordId)
+    except Exception as e:
+        log.err(e)
+        return "Você não está cadastrado, use o comando $register para se cadastrar!"
+
+    try:
         users = (
             User.select()
                 .order_by(User.score.desc(), User.last_submit.asc())
