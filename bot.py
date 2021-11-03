@@ -3,7 +3,7 @@ import utils.logging.log as log
 
 from discord.ext import commands
 from utils.config import TOKEN
-from utils.commands.rank import get_ranking_top_ten
+from utils.commands.rank import get_ranking_top_ten, get_ranking_chart
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
@@ -32,7 +32,9 @@ async def ranking(ctx):
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
 
-    await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
+    chart = await get_ranking_chart(bot)
+
+    await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx), image=discord.File(chart))
 
 
 @bot.command()
