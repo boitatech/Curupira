@@ -11,18 +11,18 @@ def get_challenges(ctx):
         print('=====> vai pegar o user')
         user = User.get(User.discordId == ctx.author.id)
         print('=====> terminou de pegar o user')
-        
+
         print('=====> vai pegar a challenge')
         challenges = Challenge.select(
                                     Challenge.id,
-                                    Challenge.name, 
-                                    Challenge.points, 
-                                    Challenge.category, 
+                                    Challenge.name,
+                                    Challenge.points,
+                                    Challenge.category,
                                     Challenge.description,
                                     Challenge.url
                                     )
         print('=====> terminou de pegar a challenge')
-        
+
         print('=====> vai pegar a attempt')
         attempts = Attempt.select().where(Attempt.correct == True, Attempt.user_id == user.id)
         print('=====> terminou de pegar a attempt')
@@ -33,6 +33,7 @@ def get_challenges(ctx):
             if len(attempts) >= 1:
                 print('O USER TEM ATTEMPT')
                 for attempt in attempts:
+                    print(dir(attempt))
                     print(f"<> <> <>Attempt: {attempt}")
                     if challenge.id == attempt.chall_id:
                         print(f"Challenges = {type(challenges)} = {challenges}")
