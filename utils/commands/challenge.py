@@ -14,13 +14,13 @@ def get_challenges(ctx):
         
         print('=====> vai pegar a challenge')
         challenges = Challenge.select(
-            Challenge.id,
-            Challenge.name, 
-            Challenge.points, 
-            Challenge.category, 
-            Challenge.description,
-            Challenge.url
-            )
+                                    Challenge.id,
+                                    Challenge.name, 
+                                    Challenge.points, 
+                                    Challenge.category, 
+                                    Challenge.description,
+                                    Challenge.url
+                                    )
         print('=====> terminou de pegar a challenge')
         
         print('=====> vai pegar a attempt')
@@ -28,20 +28,19 @@ def get_challenges(ctx):
         print('=====> terminou de pegar a attempt')
 
         challs = ""
-        for challenge in challenges.iterator():
+
+        for challenge in challenges:
             if len(attempts) >= 1:
-                # for attempt in attempts.iterator():
-                # print(f"<> <> <>Attempt: {attempt}")
-                # if challenge.id == attempt.chall_id:
                 print('O USER TEM ATTEMPT')
+                for attempt in attempts:
+                    print(f"<> <> <>Attempt: {attempt}")
+                    if challenge.id == attempt.chall_id:
+                       challenges.remove(challenge) 
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
                        ------------------------------------------------------------
                        '''
-            # for challenge in challenges.iterator()
-        # )
-
         return discord.Embed(title="Challenges", description=challs)
     except Exception as err:
         log.err(err)
