@@ -83,10 +83,9 @@ async def challs(ctx):
     Mostras as challs
     """
     await ctx.author.create_dm()
-    if not isinstance(ctx.channel, discord.channel.DMChannel):
-        await ctx.message.delete()
-
-    await ctx.author.dm_channel.send(embed=get_challenges(ctx))
+    if isinstance(ctx.channel, discord.channel.DMChannel):
+        await ctx.author.dm_channel.send(embed=get_challenges(ctx))
+    await ctx.message.delete()
 
 
 @bot.group(invoke_without_command=True)
