@@ -70,6 +70,7 @@ async def register(ctx):
     reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
     if reaction.emoji == '\N{White Heavy Check Mark}':
         await ctx.send(register_user(userID))
+        await ctx.message.delete()
     elif reaction.emoji == '\N{Cross Mark}':
         await ctx.message.delete()
         await message.delete()
