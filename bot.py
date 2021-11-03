@@ -71,6 +71,7 @@ async def register(ctx):
     if reaction.emoji == '\N{White Heavy Check Mark}':
         await ctx.send(register_user(userID))
         await ctx.message.delete()
+        await message.delete()
     elif reaction.emoji == '\N{Cross Mark}':
         await ctx.message.delete()
         await message.delete()
