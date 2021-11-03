@@ -75,15 +75,20 @@ async def register(ctx):
     Registra o usuário
     """
     def check(reaction, user):
-        return user == ctx.author and str(reaction.emoji) == '\N{White Heavy Check Mark}'
+        return user == ctx.author and (str(reaction.emoji) == '\N{Cross Mark}' or str(reaction.emoji) == '\N{White Heavy Check Mark}')
 
-    message = await ctx.send("\nGostaria de se registrar no CTF?")
+    userID = ctx.author.id
+    message = await ctx.send(f'<@{userID}> gostaria de se registrar?')
+
     symbols = ['\N{White Heavy Check Mark}', '\N{Cross Mark}']
     for symbol in symbols:
         await message.add_reaction(symbol)
-    await bot.wait_for('reaction_add', timeout=60.0, check=check)
-    await ctx.send(register_user(ctx.author.id))
-
+    reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+    if reaction.emoji == '\N{White Heavy Check Mark}':
+        await ctx.send(register_user(userID))
+    elif reaction.emoji == '\N{Cross Mark}':
+        await ctx.message.delete()
+        await message.delete()
 
 @bot.command()
 async def challs(ctx):
