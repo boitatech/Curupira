@@ -18,11 +18,6 @@ bot.remove_command("help")
 
 
 @bot.command()
-async def test(ctx, *, arg):
-    await ctx.send(ctx)
-
-
-@bot.command()
 async def ranking(ctx):
     """
     Esse comando pega os top 10 usuários no ranking
@@ -58,18 +53,6 @@ async def solve(ctx, challId=None, flag=None):
 
 
 @bot.command()
-async def get_description(ctx, challId=None):
-    """
-    Esse comando deve trazer a descricao de uma chall.
-
-    @Params
-    :challId => Id da challenge
-    """
-    log.debug(challId)
-    await ctx.send(get_challenge_description(challId))
-
-
-@bot.command()
 async def register(ctx):
     """
     Registra o usuário
@@ -90,6 +73,7 @@ async def register(ctx):
         await ctx.message.delete()
         await message.delete()
 
+
 @bot.command()
 async def challs(ctx):
     """
@@ -108,12 +92,12 @@ async def help(ctx):
     Cria novo help custom
     """
     a = discord.Embed(title="Boitatech CTF", colour=0xFF0000)
-    a.add_field(name="Help", value="Use $help [comando] para uma informação mais detalhada")
-    a.add_field(name="Comandos Disponiveis", value="""solve
-                                                      ranking
+    a.add_field(name="Help", value="Use $help [comando] para mais informações!")
+    a.add_field(name="Comandos Disponiveis", value="""
                                                       register
-                                                      help
-                                                      get_description""")
+                                                      solve
+                                                      ranking
+                                                    """)
     await ctx.send(embed=a)
 
 
@@ -136,9 +120,9 @@ async def ranking(ctx):
 
 @help.command()
 async def register(ctx):
-    b = discord.Embed(title="Registrar usuário", description="O comando register registra o usuário do discord atual automaticamente no Boitatech CTF", colour=0xFF0000)
+    b = discord.Embed(title="Registrar usuário", description="O comando `register` dá a possibilidade de participar do Boitatech CTF", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$register")
-    await ctx.send(embed=b)    
+    await ctx.send(embed=b)
 
 
 @bot.event
