@@ -46,7 +46,7 @@ def get_challenges(ctx):
                               [CATEGORY] - {challenge.category}
                               [PONTOS] - {challenge.points}
                               [DESCRIPTION] - {challenge.description}
-                              [*] {challenge.url}
+                              [+] {challenge.url}
                               {"-" * 64}
                         '''
         return discord.Embed(title="Challenges", description=challs)
