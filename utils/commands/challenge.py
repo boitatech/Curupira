@@ -35,7 +35,10 @@ def get_challenges(ctx):
                 for attempt in attempts:
                     print(f"<> <> <>Attempt: {attempt}")
                     if challenge.id == attempt.chall_id:
-                       challenges.remove(challenge) 
+                        print(f"Challenges = {type(challenges)} = {challenges}")
+                        print("&" * 30)
+                        print(f"Challenge = {type(challenge)} = {challenge}")
+                        challenges.remove(challenge) 
             challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
                           {challenge.description}
                           {challenge.url}
