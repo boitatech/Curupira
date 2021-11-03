@@ -8,7 +8,7 @@ def get_challenges(ctx):
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
     try:
-        user = User.get(User.discordId == discordId)
+        user = User.get(User.discordId == ctx.author.id)
     except Exception as e:
         log.err(e)
         return discord.Embed(title="Registre-se!", description="Você não está cadastrado, use o comando $register para se cadastrar!") 
