@@ -11,7 +11,7 @@ def get_challenges(ctx):
         user = User.get(User.discordId == discordId)
     except Exception as e:
         log.err(e)
-        return "Você não está cadastrado, use o comando $register para se cadastrar!"
+        return discord.Embed(title="Registre-se!", description="Você não está cadastrado, use o comando $register para se cadastrar!") 
 
     try:
         user = User.get(User.discordId == ctx.author.id)
