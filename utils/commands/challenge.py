@@ -30,7 +30,6 @@ def get_challenges(ctx):
         challs = ""
 
         for challenge in challenges:
-            _is_valid = None
             if len(attempts) >= 1:
                 print('O USER TEM ATTEMPT')
                 for attempt in attempts:
@@ -38,15 +37,12 @@ def get_challenges(ctx):
                         print(f"Challenges = {type(challenges)} = {challenges}")
                         print("&" * 30)
                         print(f"Challenge = {type(challenge)} = {challenge}")
-                        _is_valid = False
-                    else:
-                        _is_valid = True
-            if _is_valid:
-                challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
-                            {challenge.description}
-                            {challenge.url}
-                        ------------------------------------------------------------
-                        '''
+                        challenges.remove(challenge)
+            challs += f'''{challenge.name} ({challenge.id}) - {challenge.points} Pontos - {challenge.category}
+                          {challenge.description}
+                          {challenge.url}
+                       ------------------------------------------------------------
+                       '''
         return discord.Embed(title="Challenges", description=challs)
     except Exception as err:
         log.err(err)
