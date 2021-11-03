@@ -34,7 +34,11 @@ def get_challenges(ctx):
                 print('O USER TEM ATTEMPT')
                 for attempt in attempts:
                     print(dir(attempt))
+                    print("#*" * 30)
                     print(f"<> <> <>Attempt: {attempt}")
+                    print("#*" * 30)
+                    print(challenge.id)
+                    print(attempt.id)
                     if challenge.id == attempt.chall_id:
                         print(f"Challenges = {type(challenges)} = {challenges}")
                         print("&" * 30)
