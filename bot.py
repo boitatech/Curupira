@@ -32,7 +32,7 @@ async def ranking(ctx):
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
 
-    await ctx.author.dm_channel.send(embed=get_ranking_top_ten())
+    await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
 
 
 @bot.command()
