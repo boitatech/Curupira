@@ -79,6 +79,11 @@ async def challs(ctx):
     """
     Mostras as challs
     """
+    try:
+        user = User.get(User.discordId == discordId)
+    except Exception as e:
+        log.err(e)
+        await ctx.author.dm_channel.send("Você não está cadastrado, use o comando $register para se cadastrar!")
     await ctx.author.create_dm()
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()

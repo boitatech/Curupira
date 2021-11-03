@@ -16,7 +16,8 @@ def check_flag(challId, flag, discordId):
     """
     try:
         user = User.get(User.discordId == discordId)
-    except:
+    except Exception as e:
+        log.err(e)
         return "Você não está cadastrado, use o comando $register para se cadastrar!"
 
     try:
