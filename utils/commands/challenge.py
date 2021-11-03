@@ -41,12 +41,12 @@ def get_challenges(ctx):
                         _banned_ids.append(challenge.id)
 
             if challenge.id not in _banned_ids:
-                challs += f'''**[{challenge.id}] - {challenge.name}**
-                              [PONTOS] - {challenge.points}
+                challs += f'''
+                              **[ID: {challenge.id}] - {challenge.name}**
                               [CATEGORY] - {challenge.category}
-                              [NAME] - {challenge.name}
+                              [PONTOS] - {challenge.points}
                               [DESCRIPTION] - {challenge.description}
-                              [*]{challenge.url}
+                              [*] {challenge.url}
                               {"-" * 64}
                         '''
         return discord.Embed(title="Challenges", description=challs)
