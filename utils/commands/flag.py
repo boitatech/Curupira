@@ -5,7 +5,7 @@ from datetime import datetime
 import peewee
 
 
-def check_flag(challId, flag, discordId):
+def check_flag(ctx, challId, flag, discordId):
     """
     Essa funcao verifica se a flag esta correta, criando sempre um Attempt
 
