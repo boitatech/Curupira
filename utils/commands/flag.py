@@ -39,7 +39,7 @@ def check_flag(ctx, challId, flag, discordId):
             except Exception as e:
                 log.err(e)
                 return discord.Embed(title="Chall?!", description="Erro ao criar Attempt True")
-        elif chall.flag != flag:
+        elif chall.flag.lower() != flag:
             try:
                 Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False, timestamp=datetime.timestamp(datetime.now()))
                 return discord.Embed(title="Chall?!", description="Flag incorreta!")
