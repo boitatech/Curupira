@@ -14,6 +14,12 @@ def check_flag(ctx, challId, flag, discordId):
     :flag => flag do Challenge
     :userId => ID do Usuario
     """
+
+    """
+    Canonaliza o input do usuário, para as flags serem case-insensitive
+    """
+    flag = flag.lower()
+
     user = User.get_or_none(User.discordId == ctx.author.id)
     if user is None:
         return discord.Embed(title="Regitre-se", description="Use $register para se registrar")
@@ -25,7 +31,7 @@ def check_flag(ctx, challId, flag, discordId):
         if Attempt.get_or_none(Attempt.correct == True, Attempt.user_id == user.id, Attempt.chall_id == challId) is not None:
             return discord.Embed(title="Chall?!", description="Você já submeteu a flag desse desafio!")
 
-        if chall.flag == flag:
+        if chall.flag.lower() == flag:
             try:
                 Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.timestamp(datetime.now()))
                 User.update(score=user.score + chall.points, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId).execute()
