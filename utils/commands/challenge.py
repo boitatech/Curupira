@@ -3,7 +3,7 @@ import utils.logging.log as log
 import discord
 
 
-def get_challenges(ctx):
+async def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
@@ -43,9 +43,9 @@ def get_challenges(ctx):
                                 [+] {challenge.url}
                                 {"-" * 64}
                             '''
-                    if len(challs) > 3500:
-                        ctx.author.dm_channel.send(challs)
-                        challs = ""
-            ctx.author.dm_channel.send(challs)
+                    if len(challs) > 650:
+                        await ctx.author.dm_channel.send(challs)
+                        challs = "."
+            await ctx.author.dm_channel.send(challs)
         except Exception as err:
             log.err(err)

@@ -92,7 +92,7 @@ async def challs(ctx):
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
 
-    await ctx.author.dm_channel.send(get_challenges(ctx))
+    await get_challenges(ctx)
 
 
 # ================
