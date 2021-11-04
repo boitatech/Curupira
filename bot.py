@@ -85,7 +85,6 @@ async def register(ctx):
         await ctx.author.dm_channel.send("Utilize o comando `$register` aqui!")
 
 
-
 @bot.command()
 async def challs(ctx):
     """
