@@ -71,6 +71,8 @@ async def register(ctx):
             for symbol in symbols:
                 await message.add_reaction(symbol)
             reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+            print(f"Reaction: {reaction}")
+            print(f"User: {user}")
             if reaction.emoji == '\N{White Heavy Check Mark}':
                 print("reagiu com check")
                 await ctx.author.dm_channel.send(register_user(userID))
