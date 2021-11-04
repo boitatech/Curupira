@@ -24,7 +24,7 @@ async def ranking(ctx):
     e dá a posição atual da pessoa que chamou o comando.
     """
     try:
-        await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
+        await ctx.send(embed=get_ranking_top_ten(ctx))
     except Exception as err:
         log.err(err)
 
