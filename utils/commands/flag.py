@@ -15,12 +15,6 @@ def check_flag(challId, flag, discordId):
     :userId => ID do Usuario
     """
     try:
-        user = User.get(User.discordId == discordId)
-    except Exception as e:
-        log.err(e)
-        return "Você não está cadastrado, use o comando $register para se cadastrar!"
-
-    try:
         chall = Challenge.get_by_id(challId)
     except Exception as e:
         log.err(e)
