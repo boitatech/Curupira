@@ -9,7 +9,6 @@ from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
 from utils.commands.challenge import get_challenges
 
-# Database setup
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
 
 
