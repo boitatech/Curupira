@@ -3,7 +3,7 @@ import utils.logging.log as log
 import discord
 
 
-async def get_challenges(ctx):
+def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
     """
@@ -37,13 +37,13 @@ async def get_challenges(ctx):
 
                 if challenge.id not in _banned_ids:
                     challs_list.append(f'''
-                                **[ID: {challenge.id}] - {challenge.name}**
-                                [CATEGORY] - {challenge.category}
-                                [PONTOS] - {challenge.points}
-                                [DESCRIPTION] - {challenge.description}
-                                [+] {challenge.url}
-                                {"-" * 64}
-                            ''')
+                                            **[ID: {challenge.id}] - {challenge.name}**
+                                            [CATEGORY] - {challenge.category}
+                                            [PONTOS] - {challenge.points}
+                                            [DESCRIPTION] - {challenge.description}
+                                            [+] {challenge.url}
+                                            {"-" * 64}
+                                        ''')
             print(challs_list)
             return challs_list
         except Exception as err:
