@@ -25,6 +25,7 @@ async def get_challenges(ctx):
 
             attempts = Attempt.select(Attempt.chall_id).where(Attempt.correct == True, Attempt.user_id == user.id)
 
+            challs_list = []
             challs = ""
 
             for challenge in challenges:
@@ -35,17 +36,14 @@ async def get_challenges(ctx):
                             _banned_ids.append(challenge.id)
 
                 if challenge.id not in _banned_ids:
-                    challs += f'''
+                    challs_list .append(f'''
                                 **[ID: {challenge.id}] - {challenge.name}**
                                 [CATEGORY] - {challenge.category}
                                 [PONTOS] - {challenge.points}
                                 [DESCRIPTION] - {challenge.description}
                                 [+] {challenge.url}
                                 {"-" * 64}
-                            '''
-                    if len(challs) > 650:
-                        await ctx.author.dm_channel.send(challs)
-                        challs = "."
-            await ctx.author.dm_channel.send(challs)
+                            ''')
+            return challs_list
         except Exception as err:
             log.err(err)
