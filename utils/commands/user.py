@@ -9,6 +9,9 @@ def register_user(userID):
     @Params
     :userID => Id da conta do Discord
     """
+    user = User.get_or_none(User.discordId == ctx.author.id)
+    if user is not None:
+        return f'<@{userID}> já foi cadastrado! Faça os desafios agora!'
     try:
         user_registered = User(discordId=userID, score=0)
         user_registered.save()
