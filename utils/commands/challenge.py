@@ -43,6 +43,9 @@ def get_challenges(ctx):
                                 [+] {challenge.url}
                                 {"-" * 64}
                             '''
-            return challs
+                    if len(challs) > 3500:
+                        ctx.author.dm_channel.send(challs)
+                        challs = ""
+            ctx.author.dm_channel.send(challs)
         except Exception as err:
             log.err(err)
