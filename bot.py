@@ -40,6 +40,8 @@ async def solve(ctx, challId=None, flag=None):
     await ctx.author.create_dm()
     if isinstance(ctx.channel, discord.channel.DMChannel):
         try:
+            print('*' * 80)
+            print(type(challId))
             if challId and flag:
                 await ctx.send(embed=check_flag(ctx, challId, flag, ctx.author.id))
             else:
