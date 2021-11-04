@@ -22,11 +22,11 @@ def check_flag(ctx, challId, flag, discordId):
             chall = Challenge.get_by_id(challId)
         except Exception as e:
             log.err(e)
-            return "Esse challenge id não existe!"
+            return discord.Embed(title="Chall?!", description="Esse challenge id não existe!")
 
         try:
             Attempt.get(Attempt.correct == True, Attempt.user_id == user.id, Attempt.chall_id == challId)
-            return "Você já submeteu a flag desse desafio!"
+            return discord.Embed(title="Chall?!", description="Você já submeteu a flag desse desafio!")
         except peewee.DoesNotExist as e:
             log.err(e)
 
@@ -34,14 +34,14 @@ def check_flag(ctx, challId, flag, discordId):
             try:
                 Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=True, timestamp=datetime.timestamp(datetime.now()))
                 User.update(score=user.score + chall.points, last_submit=datetime.timestamp(datetime.now())).where(User.discordId == discordId).execute()
-                return "Flag correta!"
+                return discord.Embed(title="Chall?!", description="Parabéns! Flag correta!")
             except Exception as e:
                 log.err(e)
-                return "Erro ao criar Attempt True"
+                return discord.Embed(title="Chall?!", description="Erro ao criar Attempt True")
         else:
             try:
                 Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False, timestamp=datetime.timestamp(datetime.now()))
-                return "Flag incorreta!"
+                return discord.Embed(title="Chall?!", description="Flag incorreta!")
             except Exception as e:
                 log.err(e)
-                return "Erro ao criar Attempt False"
+                return discord.Embed(title="Chall?!", description="Erro ao criar Attempt False")
