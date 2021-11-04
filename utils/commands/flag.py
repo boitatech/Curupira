@@ -22,11 +22,8 @@ def check_flag(ctx, challId, flag, discordId):
         if chall is None:
             return discord.Embed(title="Chall?!", description="Esse challenge id não existe!")
 
-        try:
-            Attempt.get(Attempt.correct == True, Attempt.user_id == user.id, Attempt.chall_id == challId)
+        if Attempt.get_or_none(Attempt.correct == True, Attempt.user_id == user.id, Attempt.chall_id == challId) is not None:
             return discord.Embed(title="Chall?!", description="Você já submeteu a flag desse desafio!")
-        except peewee.DoesNotExist as e:
-            log.err(e)
 
         if chall.flag == flag:
             try:
@@ -36,10 +33,11 @@ def check_flag(ctx, challId, flag, discordId):
             except Exception as e:
                 log.err(e)
                 return discord.Embed(title="Chall?!", description="Erro ao criar Attempt True")
-        else:
+        elif chall.flag != flag:
             try:
                 Attempt.create(user_id=user.id, chall_id=challId, flag=flag, correct=False, timestamp=datetime.timestamp(datetime.now()))
                 return discord.Embed(title="Chall?!", description="Flag incorreta!")
             except Exception as e:
                 log.err(e)
                 return discord.Embed(title="Chall?!", description="Erro ao criar Attempt False")
+    return discord.Embed(title="Chall?!", description="Tentativa falha!")
