@@ -2,7 +2,7 @@ from ..database.setup import User
 import utils.logging.log as log
 
 
-def register_user(userID):
+def register_user(ctx, userID):
     """
     Essa funcao registra um usuario no banco de dados do CTF
 
