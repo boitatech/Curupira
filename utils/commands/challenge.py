@@ -43,6 +43,6 @@ def get_challenges(ctx):
                                 [+] {challenge.url}
                                 {"-" * 64}
                             '''
-            return discord.Embed(title="Challenges", description=challs)
+            return challs
         except Exception as err:
             log.err(err)
