@@ -126,14 +126,16 @@ async def ranking(ctx):
     b.add_field(name="Sintaxe", value="$ranking")
     await ctx.send(embed=b)
 
+
 @help.command()
-async def ranking(ctx):
+async def challs(ctx):
     """
     Mock p/ $help
     """
     b = discord.Embed(title="Checar challs", description="O comando retorna ass challenges que você precisa fazer.", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$challs")
     await ctx.send(embed=b)
+
 
 @help.command()
 async def register(ctx):
