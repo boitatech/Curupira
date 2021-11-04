@@ -72,7 +72,7 @@ async def register(ctx):
                 await message.add_reaction(symbol)
             reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
             if reaction.emoji == '\N{White Heavy Check Mark}':
-                await ctx.send(register_user(userID))
+                await ctx.author.dm_channel.send(register_user(userID))
             # await ctx.message.delete()
             await message.delete()
         except Exception as err:
