@@ -55,6 +55,7 @@ async def solve(ctx, challId=None, flag=None):
         await ctx.author.dm_channel.send("Utilize o comando `$solve` aqui!")
 
 
+
 @bot.command()
 async def register(ctx):
     """
