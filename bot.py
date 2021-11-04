@@ -40,7 +40,10 @@ async def solve(ctx, challId=None, flag=None):
     await ctx.author.create_dm()
     if isinstance(ctx.channel, discord.channel.DMChannel):
         try:
-            await ctx.send(embed=check_flag(ctx, challId, flag, ctx.author.id))
+            if challId and flag:
+                await ctx.send(embed=check_flag(ctx, challId, flag, ctx.author.id))
+            else:
+                await ctx.author.dm_channel.send("Você precisa mandar uma `challId` e uma `flag`!")
         except Exception as err:
             log.err(err)
     else:
