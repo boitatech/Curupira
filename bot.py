@@ -107,7 +107,7 @@ async def help(ctx):
 @help.command()
 async def solve(ctx):
     """
-    para $help comando
+    Mock p/ $help
     """
     b = discord.Embed(title="Resolver challenge", description="O formato que a flag deve ser inputado deve ser toda a string, incluindo bCTF\{\}", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$solve [id_challenge] [flag]")
@@ -116,6 +116,9 @@ async def solve(ctx):
 
 @help.command()
 async def ranking(ctx):
+    """
+    Mock p/ $help
+    """
     b = discord.Embed(title="Checar ranking", description="O comando retorna os 10 primeiros no ranking e o ranking do usuário atual registrado.", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$ranking")
     await ctx.send(embed=b)
@@ -123,6 +126,9 @@ async def ranking(ctx):
 
 @help.command()
 async def register(ctx):
+    """
+    Mock p/ $help
+    """
     b = discord.Embed(title="Registrar usuário", description="O comando `register` dá a possibilidade de participar do Boitatech CTF", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$register")
     await ctx.send(embed=b)
