@@ -10,9 +10,8 @@ def get_ranking_top_ten(ctx):
     """
     try:
         users = (
-            User.select()
-                .order_by(User.score.desc(), User.last_submit.asc())
-                .limit(10)
+            User.select().order_by(User.score.desc(), User.last_submit.asc())
+                         .limit(10)
         )
         ranking = "".join(
             f'#{idx+1} <@{user.discordId}> - {user.score}\n'

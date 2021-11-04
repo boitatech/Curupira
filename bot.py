@@ -24,11 +24,10 @@ async def ranking(ctx):
     e dá a posição atual da pessoa que chamou o comando.
     """
     await ctx.author.create_dm()
-    if isinstance(ctx.channel, discord.channel.DMChannel):
-        await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
-    else:
+    if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
-        await ctx.author.dm_channel.send("Utilize o comando `$ranking` aqui!")
+
+    await ctx.author.dm_channel.send(embed=get_ranking_top_ten(ctx))
 
 
 @bot.command()
@@ -83,10 +82,10 @@ async def challs(ctx):
     Mostras as challs
     """
     await ctx.author.create_dm()
-    if isinstance(ctx.channel, discord.channel.DMChannel):
-        await ctx.author.dm_channel.send(embed=get_challenges(ctx))
-    await ctx.author.dm_channel.send("Utilize o comando `$challs` aqui!")
-    await ctx.message.delete()
+    if not isinstance(ctx.channel, discord.channel.DMChannel):
+        await ctx.message.delete()
+
+    await ctx.author.dm_channel.send(embed=get_challenges(ctx))
 
 
 @bot.group(invoke_without_command=True)
