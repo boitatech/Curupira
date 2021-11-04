@@ -23,12 +23,6 @@ async def ranking(ctx):
     Esse comando pega os top 10 usuários no ranking
     e dá a posição atual da pessoa que chamou o comando.
     """
-    user = User.get(User.discordId == ctx.author.id)
-    print(user)
-    print("888")
-    print(dir(user))
-    print("888")
-    print(type(user))
     await ctx.author.create_dm()
     if isinstance(ctx.channel, discord.channel.DMChannel):
         try:
