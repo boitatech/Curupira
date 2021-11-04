@@ -93,7 +93,7 @@ async def challs(ctx):
         await ctx.message.delete()
     challs = get_challenges(ctx)
     for chall in challs:
-        await ctx.author.dm_channel.send(chall)
+        await ctx.author.dm_channel.send(embeded=chall)
 
 
 # ================
