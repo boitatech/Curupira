@@ -18,10 +18,8 @@ def check_flag(ctx, challId, flag, discordId):
     if user is None:
         return discord.Embed(title="Regitre-se", description="Use $register para se registrar")
     else:
-        try:
-            chall = Challenge.get_by_id(challId)
-        except Exception as e:
-            log.err(e)
+        chall = Challenge.get_or_none(Challenge.id == challId)
+        if chall is None:
             return discord.Embed(title="Chall?!", description="Esse challenge id não existe!")
 
         try:
