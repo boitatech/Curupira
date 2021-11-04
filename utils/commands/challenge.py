@@ -36,7 +36,7 @@ async def get_challenges(ctx):
                             _banned_ids.append(challenge.id)
 
                 if challenge.id not in _banned_ids:
-                    challs_list .append(f'''
+                    challs_list.append(f'''
                                 **[ID: {challenge.id}] - {challenge.name}**
                                 [CATEGORY] - {challenge.category}
                                 [PONTOS] - {challenge.points}
@@ -44,6 +44,7 @@ async def get_challenges(ctx):
                                 [+] {challenge.url}
                                 {"-" * 64}
                             ''')
+            print(challs_list)
             return challs_list
         except Exception as err:
             log.err(err)
