@@ -8,6 +8,12 @@ def get_ranking_top_ten(ctx):
     """
     Essa funcao retorna os top 10 colocados no CTF
     """
+    user = User.get(User.discordId == ctx.author.id)
+    print(user)
+    print("888")
+    print(dir(user))
+    print("888")
+    print(type(user))
     try:
         users = (
             User.select().order_by(User.score.desc(), User.last_submit.asc())
