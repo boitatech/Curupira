@@ -59,23 +59,26 @@ async def register(ctx):
     """
     Registra o usuário
     """
-    def check(reaction, user):
-        return user == ctx.author and (str(reaction.emoji) == '\N{Cross Mark}' or str(reaction.emoji) == '\N{White Heavy Check Mark}')
+    if isinstance(ctx.channel, discord.channel):
+        def check(reaction, user):
+            return user == ctx.author and (str(reaction.emoji) == '\N{Cross Mark}' or str(reaction.emoji) == '\N{White Heavy Check Mark}')
 
-    userID = ctx.author.id
-    message = await ctx.send(f'<@{userID}> gostaria de se registrar?')
+        userID = ctx.author.id
+        message = await ctx.send(f'<@{userID}> gostaria de se registrar?')
 
-    symbols = ['\N{White Heavy Check Mark}', '\N{Cross Mark}']
-    for symbol in symbols:
-        await message.add_reaction(symbol)
-    reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
-    if reaction.emoji == '\N{White Heavy Check Mark}':
-        await ctx.send(register_user(userID))
-        await ctx.message.delete()
-        await message.delete()
-    elif reaction.emoji == '\N{Cross Mark}':
-        await ctx.message.delete()
-        await message.delete()
+        symbols = ['\N{White Heavy Check Mark}', '\N{Cross Mark}']
+        for symbol in symbols:
+            await message.add_reaction(symbol)
+        reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+        if reaction.emoji == '\N{White Heavy Check Mark}':
+            await ctx.send(register_user(userID))
+            await ctx.message.delete()
+            await message.delete()
+        elif reaction.emoji == '\N{Cross Mark}':
+            await ctx.message.delete()
+            await message.delete()
+    else:
+        await ctx.author.dm_channel.send("Você precisa se registrar lá no servidor da Boitatech! ;-)")
 
 
 @bot.command()
