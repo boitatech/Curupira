@@ -1,7 +1,7 @@
-import utils.logging.log as log
-
 from ..database.setup import Attempt, Challenge, User
+import utils.logging.log as log
 from datetime import datetime
+import discord
 import peewee
 
 
