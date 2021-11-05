@@ -1,4 +1,5 @@
 import discord
+from time import sleep
 import utils.logging.log as log
 
 from discord.ext import commands
@@ -87,7 +88,7 @@ async def register(ctx):
 async def activate_scoreboard(ctx):
     try:
         while True:
-            time.sleep(5)
+            sleep(5)
             await scoreboard()
     except Exception as err:
         log.err(err)
