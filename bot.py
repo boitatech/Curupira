@@ -3,7 +3,7 @@ import utils.logging.log as log
 
 from discord.ext import commands
 from utils.config import TOKEN
-from utils.commands.rank import get_ranking_top_ten
+from utils.commands.rank import get_ranking_top_ten, scoreboard
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
@@ -145,7 +145,7 @@ async def challs(ctx):
     """
     Mock p/ $help
     """
-    b = discord.Embed(title="Checar challs", description="O comando retorna as challenges que você precisa fazer.", colour=0xFF0000)
+    b = discord.Embed(title="Checar challs", description="O comando retorna ass challenges que você precisa fazer.", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$challs")
     await ctx.send(embed=b)
 
@@ -170,3 +170,6 @@ async def on_ready():
 if __name__ == "__main__":
     init_database()
     bot.run(TOKEN)
+    while True:
+        time.sleep(5)
+        scoreboard()

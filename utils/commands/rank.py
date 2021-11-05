@@ -16,6 +16,7 @@ def get_ranking_top_ten(ctx):
     except Exception as err:
         log.err(err)
 
+
 def scoreboard():
     """
     Essa funcao edita a mensagem para o scoreboard
@@ -29,7 +30,7 @@ def scoreboard():
         f'#{idx+1} <@{user.discordId}> - {user.score}\n'
         for idx, user in enumerate(users.iterator())
     )
- 
+
     channel = bot.get_channel(906198041814507541)
     message = channel.fetch_message(906201505793703967)
 
