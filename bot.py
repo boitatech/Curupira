@@ -4,7 +4,7 @@ import utils.logging.log as log
 
 from discord.ext import commands
 from utils.config import TOKEN
-from utils.commands.rank import get_ranking_top_ten, scoreboard
+from utils.commands.rank import get_ranking_top_ten
 from utils.commands.flag import check_flag
 from utils.database.setup import get_challenge_description, init_database
 from utils.commands.user import register_user
