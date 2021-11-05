@@ -13,7 +13,7 @@ from utils.commands.challenge import get_challenges
 # http://docs.peewee-orm.com/en/latest/peewee/quickstart.html
 
 
-bot = commands.Bot(command_prefix='$', description="Boitatech CTF")
+bot = commands.Bot(command_prefix='secreeet', description="$help + Boitatech CTF")
 
 bot.remove_command("help")
 
