@@ -145,7 +145,7 @@ async def challs(ctx):
     """
     Mock p/ $help
     """
-    b = discord.Embed(title="Checar challs", description="O comando retorna ass challenges que você precisa fazer.", colour=0xFF0000)
+    b = discord.Embed(title="Checar challs", description="O comando retorna as challenges que você precisa fazer.", colour=0xFF0000)
     b.add_field(name="Sintaxe", value="$challs")
     await ctx.send(embed=b)
 
