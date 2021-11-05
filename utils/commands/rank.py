@@ -27,7 +27,7 @@ def get_ranking_top_ten(ctx):
         log.err(err)
 
 
-def scoreboard():
+def scoreboard(bot):
     """
     Essa funcao edita a mensagem para o scoreboard
     """
