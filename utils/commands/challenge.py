@@ -1,7 +1,7 @@
 from ..database.setup import Challenge, Attempt, User
 import utils.logging.log as log
 import discord
-
+from colorhash import ColorHash
 
 def get_challenges(ctx):
     """
@@ -36,14 +36,16 @@ def get_challenges(ctx):
                             _banned_ids.append(challenge.id)
 
                 if challenge.id not in _banned_ids:
-                    challs_list.append(discord.Embed(title=f"{challenge.name}", description=f'''
+                	description = f'''
                                                                         **[ID: {challenge.id}] - {challenge.name}**
                                                                         [CATEGORY] - {challenge.category}
                                                                         [PONTOS] - {challenge.points}
                                                                         [DESCRIPTION] - {challenge.description}
                                                                         [+] {challenge.url}
                                                                         {"-" * 64}
-                                                                    '''))
+                                                                    '''
+                    color_hash_description = int(ColorHash(description).hex.replace('#', '0x'), 16)
+                    challs_list.append(discord.Embed(title=f"{challenge.name}", description=description, color=color_hash_description))
             print(challs_list)
             return challs_list
         except Exception as err:
