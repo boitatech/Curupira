@@ -92,7 +92,7 @@ async def challs(ctx):
     if not isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.message.delete()
     challs = get_challenges(ctx)
-    for chall in challs:
+    for chall in challs.reverse():
         await ctx.author.dm_channel.send(embed=chall)
 
 
