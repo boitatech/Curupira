@@ -84,6 +84,16 @@ async def register(ctx):
 
 
 @bot.command()
+async def activate_scoreboard(ctx):
+    try:
+        while True:
+            time.sleep(5)
+            await scoreboard()
+    except Exception as err:
+        log.err(err)
+
+
+@bot.command()
 async def challs(ctx):
     """
     Mostras as challs
@@ -170,6 +180,3 @@ async def on_ready():
 if __name__ == "__main__":
     init_database()
     bot.run(TOKEN)
-    while True:
-        time.sleep(5)
-        scoreboard()
