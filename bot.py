@@ -85,16 +85,6 @@ async def register(ctx):
 
 
 @bot.command()
-def activate_scoreboard(ctx):
-    try:
-        while True:
-            sleep(5)
-            scoreboard(bot)
-    except Exception as err:
-        log.err(err)
-
-
-@bot.command()
 async def challs(ctx):
     """
     Mostras as challs
