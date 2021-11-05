@@ -3,6 +3,7 @@ import utils.logging.log as log
 import discord
 from colorhash import ColorHash
 
+
 def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
