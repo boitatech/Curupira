@@ -85,7 +85,7 @@ async def register(ctx):
 
 
 @bot.command()
-async def activate_scoreboard(ctx):
+def activate_scoreboard(ctx):
     try:
         while True:
             sleep(5)
