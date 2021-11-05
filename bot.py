@@ -89,7 +89,7 @@ async def activate_scoreboard(ctx):
     try:
         while True:
             sleep(5)
-            await scoreboard(bot)
+            scoreboard(bot)
     except Exception as err:
         log.err(err)
 
