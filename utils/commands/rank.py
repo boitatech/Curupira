@@ -9,6 +9,8 @@ def get_ranking_top_ten(ctx):
     Essa funcao retorna a posicao do usuario
     """
     try:
+        rank_expr = peewee.fn.rank().over(order_by=[User.score.desc(), User.last_submit.asc()])
+        subquery = User.select(User.discordId, rank_expr.alias('rank'))
         user_rank = peewee.Select(columns=[subquery.c.discordId, subquery.c.rank]).from_(subquery).where(subquery.c.discordId == str(ctx.author.id)).bind(_DB).first()
         return user_rank
     except Exception as err:
