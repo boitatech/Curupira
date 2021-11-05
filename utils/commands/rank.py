@@ -26,6 +26,7 @@ def scoreboard():
         User.select().order_by(User.score.desc(), User.last_submit.asc())
                         .limit(10)
     )
+
     ranking = "".join(
         f'#{idx+1} <@{user.discordId}> - {user.score}\n'
         for idx, user in enumerate(users.iterator())
@@ -34,4 +35,4 @@ def scoreboard():
     channel = bot.get_channel(906198041814507541)
     message = channel.fetch_message(906201505793703967)
 
-    message.edit(content=ranking)
+    message.edit(content=discord.Embed(description=ranking))
