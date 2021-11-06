@@ -3,6 +3,7 @@ import utils.logging.log as log
 import discord
 from colorhash import ColorHash
 
+
 def get_challenges(ctx):
     """
     Essa funcao retorna todos os challenges cadastrados no CTF
@@ -36,7 +37,7 @@ def get_challenges(ctx):
                             _banned_ids.append(challenge.id)
 
                 if challenge.id not in _banned_ids:
-                    color_hash_description = int(ColorHash(str(challenge.id)).hex.replace('#', '0x'), 16)
+                    color_hash_description = int(ColorHash(str(challenge.category)).hex.replace('#', '0x'), 16)
                     challs_list.append(discord.Embed(title=f"{challenge.name}", description=f'''
                                                                         **[ID: {challenge.id}] - {challenge.name}**
                                                                         [CATEGORY] - {challenge.category}
